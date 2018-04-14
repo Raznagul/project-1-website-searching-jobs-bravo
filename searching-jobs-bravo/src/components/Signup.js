@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { auth } from '../firebase';
+
 import * as routes from "../constants/routes";
 
 class SignUpPage extends Component {
@@ -39,6 +41,14 @@ class SignUpForm extends Component {
     event.preventDefault();
     console.log("Signup submited");
     console.log(this.state);
+    const { username, email, password } = this.state;
+    auth.signup(email, password)
+      .then(authUser => {
+        this.setState(() => ({ ...UserForSignup }));
+      })
+      .catch(error => {
+        this.setState(byPropKey('error', error));
+      });
   };
 
   render() {
