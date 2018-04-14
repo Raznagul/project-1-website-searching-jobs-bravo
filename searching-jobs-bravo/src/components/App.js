@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
+import SignInPage from "./Signin";
 import SignUpPage from "./Signup";
 /*
-import SignInPage from "./SignIn";
 import ForgottenPasswordPage from "./ForgottenPassword";
 import HomePage from "./Home";
 import ProfilePage from "./Profile";
@@ -28,6 +28,11 @@ class App extends Component {
               exact
               path={routes.landing}
               component={() => <LandingPage />}
+            />
+            <Route
+              exact
+              path={routes.signin}
+              component={() => <SignInPage />}
             />
             <Route
               exact

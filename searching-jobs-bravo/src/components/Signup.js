@@ -1,25 +1,21 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-import { auth } from '../firebase';
-
+import { auth } from "../firebase";
+import { SignInLink } from "./Signin";
 import * as routes from "../constants/routes";
 
-class SignUpPage extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Sign Up</h1>
-        <SignUpForm />
-      </div>
-    );
-  }
-}
+const SignUpPage = ({ history }) => (
+  <div>
+    <h1>SignUp</h1>
+    <SignUpForm history={history} />
+    <SignInLink />
+  </div>
+);
 
 const UserForSignup = {
   name: "",
   lastname: "",
-  username: "",
   email: "",
   password: "",
   passwordConfirmation: "",
@@ -39,15 +35,17 @@ class SignUpForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log("Signup submited");
-    console.log(this.state);
-    const { username, email, password } = this.state;
-    auth.signup(email, password)
+    const { email, password } = this.state;
+    const { history } = this.props;
+
+    auth
+      .signup(email, password)
       .then(authUser => {
         this.setState(() => ({ ...UserForSignup }));
+        history.push(routes.home);
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        this.setState(byPropKey("error", error));
       });
   };
 
@@ -55,7 +53,6 @@ class SignUpForm extends Component {
     const {
       name,
       lastname,
-      username,
       email,
       password,
       passwordConfirmation,
@@ -66,7 +63,8 @@ class SignUpForm extends Component {
       password !== passwordConfirmation ||
       password === "" ||
       email === "" ||
-      username === "";
+      name === "" ||
+      lastname === "";
 
     /* https://reactjs.org/docs/forms.html#controlled-components */
     return (
@@ -95,19 +93,6 @@ class SignUpForm extends Component {
             className="form-control"
             id="lastname"
             placeholder="Enter Last Name"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            value={username}
-            onChange={event =>
-              this.setState(byPropKey("username", event.target.value))
-            }
-            type="text"
-            className="form-control"
-            id="username"
-            placeholder="Enter username"
           />
         </div>
         <div className="form-group">
@@ -170,6 +155,6 @@ const SignUpLink = () => (
   </p>
 );
 
-export default SignUpPage;
+export default withRouter(SignUpPage);
 
 export { SignUpForm, SignUpLink };
