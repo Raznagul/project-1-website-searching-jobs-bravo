@@ -7,7 +7,7 @@ import * as routes from "../constants/routes";
 
 const ForgettenPasswordPage = () => (
   <div>
-    <h1>ForgettenPassword</h1>
+    <h1>Password Recovery</h1>
     <ForgettenPasswordForm />
   </div>
 );
@@ -36,7 +36,7 @@ class ForgettenPasswordForm extends Component {
         this.setState(() => ({ ...UserForForgottenPassword }));
       })
       .catch(error => {
-        this.setState(byPropKey("error", UserForForgottenPassword));
+        this.setState(byPropKey("error", error));
       });    
   };
 
