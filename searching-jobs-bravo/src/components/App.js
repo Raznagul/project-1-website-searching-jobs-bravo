@@ -4,8 +4,8 @@ import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
 import SignInPage from "./Signin";
 import SignUpPage from "./Signup";
-/*
 import ForgottenPasswordPage from "./ForgottenPassword";
+/*
 import HomePage from "./Home";
 import ProfilePage from "./Profile";
 */
@@ -46,6 +46,11 @@ class App extends Component {
               exact
               path={routes.signup}
               component={() => <SignUpPage />}
+            />
+            <Route
+              exact
+              path={routes.forgottenpassword}
+              component={() => <ForgottenPasswordPage />}
             />
           </main>
         </div>
