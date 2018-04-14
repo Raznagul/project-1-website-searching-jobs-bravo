@@ -14,47 +14,141 @@ class SignUpPage extends Component {
   }
 }
 
+const UserForSignup = {
+  name: "",
+  lastname: "",
+  username: "",
+  email: "",
+  password: "",
+  passwordConfirmation: "",
+  error: null
+};
+
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value
+});
+
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { ...UserForSignup };
   }
 
-  onSubmit = event => {};
+  onSubmit = event => {
+    event.preventDefault();
+    console.log("Signup submited");
+    console.log(this.state);
+  };
 
   render() {
+    const {
+      name,
+      lastname,
+      username,
+      email,
+      password,
+      passwordConfirmation,
+      error
+    } = this.state;
+
+    const isInvalid =
+      password !== passwordConfirmation ||
+      password === "" ||
+      email === "" ||
+      username === "";
+
+    /* https://reactjs.org/docs/forms.html#controlled-components */
     return (
       <form onSubmit={this.onSubmit}>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
           <input
+            value={name}
+            onChange={event =>
+              this.setState(byPropKey("name", event.target.value))
+            }
+            type="text"
+            className="form-control"
+            id="name"
+            placeholder="Enter Name"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastname">Last name</label>
+          <input
+            value={lastname}
+            onChange={event =>
+              this.setState(byPropKey("lastname", event.target.value))
+            }
+            type="text"
+            className="form-control"
+            id="lastname"
+            placeholder="Enter Last Name"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            value={username}
+            onChange={event =>
+              this.setState(byPropKey("username", event.target.value))
+            }
+            type="text"
+            className="form-control"
+            id="username"
+            placeholder="Enter username"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email address</label>
+          <input
+            value={email}
+            onChange={event =>
+              this.setState(byPropKey("email", event.target.value))
+            }
             type="email"
-            class="form-control"
-            id="exampleInputEmail1"
+            className="form-control"
+            id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
           />
-          <small id="emailHelp" class="form-text text-muted">
+          <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
           </small>
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
+            value={password}
+            onChange={event =>
+              this.setState(byPropKey("password", event.target.value))
+            }
             type="password"
-            class="form-control"
-            id="exampleInputPassword1"
+            className="form-control"
+            id="password"
             placeholder="Password"
           />
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
-            Check me out
-          </label>
+        <div className="form-group">
+          <label htmlFor="passwordConfirmation">Confirm Password</label>
+          <input
+            value={passwordConfirmation}
+            onChange={event =>
+              this.setState(
+                byPropKey("passwordConfirmation", event.target.value)
+              )
+            }
+            type="password"
+            className="form-control"
+            id="passwordConfirmation"
+            placeholder="Confirm Password"
+          />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button disabled={isInvalid} type="submit" className="btn btn-primary">
           Submit
         </button>
+        {error && <p>{error.message}</p>}
       </form>
     );
   }
