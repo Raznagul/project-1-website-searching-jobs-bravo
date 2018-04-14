@@ -11,6 +11,7 @@ import ProfilePage from "./Profile";
 */
 import "./App.css";
 import * as routes from "../constants/routes";
+import { firebase } from "../firebase";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery";
@@ -18,11 +19,18 @@ import "popper.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null
+    };
+  }
   render() {
     return (
       <Router>
         <div>
-          <Navigation />
+          <Navigation authUser={this.state.authUser} />
           <main>
             <Route
               exact
@@ -43,6 +51,14 @@ class App extends Component {
         </div>
       </Router>
     );
+  }
+
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+        ? this.setState(() => ({ authUser }))
+        : this.setState(() => ({ authUser: null }));
+    });
   }
 }
 
