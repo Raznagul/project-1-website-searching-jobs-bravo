@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
 import SignUpPage from "./Signup";
+import  ContactUs from './ContactUs';
 /*
 import SignInPage from "./SignIn";
 import ForgottenPasswordPage from "./ForgottenPassword";
@@ -16,6 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery";
 import "popper.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import ConstactUS from "./ContactUs";
 
 class App extends Component {
   render() {
@@ -35,8 +37,12 @@ class App extends Component {
               component={() => <SignUpPage />}
             />
           </main>
+          <ContactUs/>
+
         </div>
+
       </Router>
+
     );
   }
 }
