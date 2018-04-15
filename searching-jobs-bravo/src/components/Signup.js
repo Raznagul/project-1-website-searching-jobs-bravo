@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { SignInLink } from "./Signin";
 import * as routes from "../constants/routes";
 
@@ -35,14 +35,17 @@ class SignUpForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { name, lastname, email, password } = this.state;
     const { history } = this.props;
 
     auth
       .signup(email, password)
       .then(authUser => {
-        this.setState(() => ({ ...UserForSignup }));
-        history.push(routes.home);
+        console.log(authUser);
+        db.createUser(authUser.uid, name, lastname, email).then(() => {
+          this.setState(() => ({ ...UserForSignup }));
+          history.push(routes.home);
+        });
       })
       .catch(error => {
         this.setState(byPropKey("error", error));

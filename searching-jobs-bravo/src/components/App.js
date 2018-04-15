@@ -5,9 +5,9 @@ import LandingPage from "./LandingPage";
 import SignInPage from "./Signin";
 import SignUpPage from "./Signup";
 import ForgottenPasswordPage from "./ForgottenPassword";
+import ProfilePage from "./Profile";
 /*
 import HomePage from "./Home";
-import ProfilePage from "./Profile";
 */
 import "./App.css";
 import * as routes from "../constants/routes";
@@ -29,6 +29,7 @@ const App = () => (
         <Route exact path={routes.signin} component={() => <SignInPage />} />
         <Route exact path={routes.signup} component={() => <SignUpPage />} />
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
+        <Route exact path={routes.profile} component={() => <ProfilePage />} />
       </main>
     </div>
   </Router>

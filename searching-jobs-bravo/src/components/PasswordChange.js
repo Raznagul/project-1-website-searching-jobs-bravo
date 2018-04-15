@@ -7,8 +7,8 @@ const byPropKey = (propertyName, value) => () => ({
 });
 
 const UserForPasswordChange = {
-  passwordOne: '',
-  passwordTwo: '',
+  password: '',
+  passwordConfirmation: '',
   error: null,
 };
 
@@ -20,29 +20,29 @@ class PasswordChangeForm extends Component {
   }
 
   onSubmit = (event) => {
-    const { passwordOne } = this.state;
+    event.preventDefault();
+    const { password } = this.state;
 
-    auth.doPasswordUpdate(passwordOne)
+    auth.updatePassword(password)
       .then(() => {
         this.setState(() => ({ ...UserForPasswordChange }));
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
-
-    event.preventDefault();
+    
   }
 
   render() {
     const {
-      passwordOne,
-      passwordTwo,
+      password,
+      passwordConfirmation,
       error,
     } = this.state;
 
     const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '';
+      password !== passwordConfirmation ||
+      password === '';
 
     return (
         <form onSubmit={this.onSubmit}>
