@@ -41,7 +41,6 @@ class SignUpForm extends Component {
     auth
       .signup(email, password)
       .then(authUser => {
-        console.log(authUser);
         db.createUser(authUser.uid, name, lastname, email).then(() => {
           this.setState(() => ({ ...UserForSignup }));
           history.push(routes.home);
