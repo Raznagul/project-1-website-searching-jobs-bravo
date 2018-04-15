@@ -1,0 +1,51 @@
+
+
+// contact us form width
+$desktop-form-width:25%;
+$mobile-form-width:80%;
+
+
+.contact-us-title{
+
+  width: $mobile-form-width;
+  p{
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+
+.contact-us-form{
+  text-align: left;
+  width: $mobile-form-width;
+  //background-color: red;
+
+}
+
+
+
+// This applies from 600px onwards
+@media (min-width: 600px) {
+
+  .contact-us-title{
+
+    width: $desktop-form-width;
+    p{
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+
+
+  .contact-us-form{
+    text-align: left;
+    width: $desktop-form-width;
+    //background-color: red;
+
+  }
+
+
+}
+
+
+

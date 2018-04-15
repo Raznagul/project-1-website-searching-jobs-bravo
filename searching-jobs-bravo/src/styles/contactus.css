@@ -1,0 +1,22 @@
+.contact-us-title {
+  width: 80%; }
+  .contact-us-title p {
+    text-align: justify;
+    text-justify: inter-word; }
+
+.contact-us-form {
+  text-align: left;
+  width: 80%; }
+
+@media (min-width: 600px) {
+  .contact-us-title {
+    width: 25%; }
+    .contact-us-title p {
+      text-align: justify;
+      text-justify: inter-word; }
+
+  .contact-us-form {
+    text-align: left;
+    width: 25%; } }
+
+/*# sourceMappingURL=contactus.css.map */
