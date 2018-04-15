@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
@@ -18,53 +18,20 @@ import "jquery";
 import "popper.js";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+import withAuthentication from './withAuthentication';
 
-    this.state = {
-      authUser: null
-    };
-  }
-  render() {
-    return (
-      <Router>
-        <div>
-          <Navigation authUser={this.state.authUser} />
-          <main>
-            <Route
-              exact
-              path={routes.landing}
-              component={() => <LandingPage />}
-            />
-            <Route
-              exact
-              path={routes.signin}
-              component={() => <SignInPage />}
-            />
-            <Route
-              exact
-              path={routes.signup}
-              component={() => <SignUpPage />}
-            />
-            <Route
-              exact
-              path={routes.forgottenpassword}
-              component={() => <ForgottenPasswordPage />}
-            />
-          </main>
-        </div>
-      </Router>
-    );
-  }
+const App = () => (
+  <Router>
+    <div>
+      <Navigation />
+      <main>
+        <Route exact path={routes.landing} component={() => <LandingPage />} />
+        <Route exact path={routes.signin} component={() => <SignInPage />} />
+        <Route exact path={routes.signup} component={() => <SignUpPage />} />
+        <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
+      </main>
+    </div>
+  </Router>
+);
 
-  componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? this.setState(() => ({ authUser }))
-        : this.setState(() => ({ authUser: null }));
-    });
-  }
-}
-
-export default App;
+export default withAuthentication(App);

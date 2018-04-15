@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 import * as routes from "../constants/routes";
 import { auth } from "../firebase";
+import AuthUserContext from "./AuthUserContext";
 
-const Navigation = ({ authUser }) => (
+const Navigation = () => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <Link className="navbar-brand" to={routes.landing}>
       Navbar
@@ -21,7 +22,9 @@ const Navigation = ({ authUser }) => (
       <span className="navbar-toggler-icon" />
     </button>
     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-      {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+      <AuthUserContext.Consumer>
+        {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+      </AuthUserContext.Consumer>
     </div>
   </nav>
 );
