@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
 import SignUpPage from "./Signup";
-import  ContactUs from './ContactUs';
+import ContactUs from './ContactUs';
 /*
 import SignInPage from "./SignIn";
 import ForgottenPasswordPage from "./ForgottenPassword";
@@ -17,34 +17,39 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery";
 import "popper.js";
 import "bootstrap/dist/js/bootstrap.min.js";
-import ConstactUS from "./ContactUs";
+
 
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Navigation />
-          <main>
-            <Route
-              exact
-              path={routes.landing}
-              component={() => <LandingPage />}
-            />
-            <Route
-              exact
-              path={routes.signup}
-              component={() => <SignUpPage />}
-            />
-          </main>
-          <ContactUs/>
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Navigation/>
+                    <main>
+                        <Route
+                            exact
+                            path={routes.landing}
+                            component={() => <LandingPage/>}
+                        />
+                        <Route
+                            exact
+                            path={routes.signup}
+                            component={() => <SignUpPage/>}
+                        />
+                        <Route
+                            exact
+                            path={routes.contactus}
+                            component={() => <ContactUs/>}
+                        />
+                    </main>
 
-        </div>
 
-      </Router>
+                </div>
 
-    );
-  }
+            </Router>
+
+        );
+    }
 }
 
 export default App;

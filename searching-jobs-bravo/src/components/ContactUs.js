@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../styles/contactus.css'
+import '../styles/css/contactus.css'
 //Libraries
 import axios from 'axios';
 
