@@ -41,8 +41,12 @@ $mobile-form-width:80%;
     text-align: left;
     width: $desktop-form-width;
     //background-color: red;
+    .form-validator{
+      color: red;
+    }
 
   }
+
 
 
 }
