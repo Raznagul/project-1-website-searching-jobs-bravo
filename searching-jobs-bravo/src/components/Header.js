@@ -4,11 +4,9 @@ import HeaderMenu from './HeaderMenu';
 class Header extends Component {
     render() {
         return (
-            <div>
-                <header>
-                    <HeaderMenu />
-                </header>
-            </div>
+            <header>
+                <HeaderMenu />
+            </header>
         );
     }
 }

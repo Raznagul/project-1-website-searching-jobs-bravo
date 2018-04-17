@@ -25,7 +25,7 @@ class ContentLandPage extends Component {
                                     </div>
                                 </div>
                                 <div className="col-1">
-                                    <img src={require('./../images/loupe36.png')} className="icon" alt="Buscar" />
+                                    <img src={require('./../images/analysis32.png')} className="icon" alt="Buscar" />
                                 </div>
                             </div>
                         </div>

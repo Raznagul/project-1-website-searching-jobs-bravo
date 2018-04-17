@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './../styles/css/style.css';
+import * as routes from "../constants/routes";
+import { Link } from "react-router-dom";
 
 class ContentFooter extends Component {
     render() {
@@ -31,9 +33,7 @@ class ContentFooter extends Component {
 
                         <div className="col-md-6">
                             <ul className="list-unstyled text-right">
-                                <li className="mb-2">
-                                    <a href="#!">Contacto</a>
-                                </li>
+                                <Link className="mb-2" to={routes.contactus}>Contacto</Link>
                                 <li className="mb-2">
                                     <a href="#!">Términos y Condiciones</a>
                                 </li>
@@ -59,8 +59,8 @@ class ContentFooter extends Component {
 
                 </div>
 
-                <div className="footer-copyright py-3 text-center border-top">
-                    <p>© 2018 Copyright BRAVO</p>
+                <div className="footer-copyright text-center border-top">
+                    © 2018 Copyright BRAVO
                 </div>
             </div>
         );
