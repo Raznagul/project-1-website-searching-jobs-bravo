@@ -1,0 +1,40 @@
+body{
+
+    font-family: 'Poppins', sans-serif;
+    
+    .landPageContent{
+        background: url(../../images/background2.jpg) no-repeat center center;
+        background-size: cover;
+        //opacity: 0.8;
+        height: 35em;
+    }
+
+    .backColor{
+        background-color: #F2F2F2;
+    }
+
+    .jumbotron {
+        background: rgb(200, 54, 54); /* This is for ie8 and below */
+        background: rgba(200, 54, 54, 0.5); 
+        padding: 1.5em;
+    }
+
+    .vertical-center {
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10em;
+    }
+
+    .row.no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+
+        & > [class^="col-"],
+        & > [class*=" col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+}
