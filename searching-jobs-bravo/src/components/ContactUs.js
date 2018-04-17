@@ -37,6 +37,14 @@ class ContactUsForm extends Component {
         this.handleAlert=this.handleAlert.bind(this);
     }
 
+<<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
+=======
+    closeError = event => {
+        event.preventDefault();
+        this.setState({error: null});
+
+    };
+>>>>>>> Validate ContactUs form
 
 
     handleYourNameChange(evt) {
@@ -152,12 +160,19 @@ class ContactUsForm extends Component {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+<<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
                     :
                     <div></div>
                 }
                 {this.state.success?
                     <div className="alert alert-success" role="alert">
                         <strong>Success</strong>, your message has been send successfully !
+=======
+                )}
+                {success && (
+                    <div className="alert " role="alert">
+                        Your message has been successfully sent!
+>>>>>>> Validate ContactUs form
                         <button
                             onClick={this.handleAlert}
                             type="button"
@@ -167,13 +182,33 @@ class ContactUsForm extends Component {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+<<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
                     :
                     <div></div>
                 }
             </div>
+=======
+                )}
+                <form  className="needs-validation contact-us-form" novalidate onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label>Your Name (required)</label>
+                        <input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange }
+                               required/>
+                    </div>
+                    <div className="form-group">
+                        <label>Your Email </label>
+                        <input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
+                               required/>
+                    </div>
+                    <div className="form-group">
+                        <label>Subject</label>
+                        <input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
+                    </div>
+>>>>>>> Validate ContactUs form
 
         );
 
+<<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
 
     }
 
@@ -199,6 +234,20 @@ class ContactUsPage extends Component{
                         <ContactUsForm/>
                     </div>
                 </div>
+=======
+                    <div className="form-group">
+                        <label>Message</label>
+                        <textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
+                                  required>
+                        </textarea>
+                    </div>
+
+                    <div className="form-group">
+                        <button  type="submit" className="btn">Send</button>
+                    </div>
+                </form>
+            </div>
+>>>>>>> Validate ContactUs form
 
 
             </div>
@@ -210,4 +259,36 @@ class ContactUsPage extends Component{
 
 }
 
+<<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
+=======
+
+class ContactUsPage extends Component{
+
+    render(){
+
+        return(
+
+            <div className="container">
+                <div className="row">
+                    <div class="col-sm ">
+                        <ContactUsTitle/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div class="col-sm">
+                        <ContactUsForm/>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        );
+    }
+
+
+}
+
+>>>>>>> Validate ContactUs form
 export default ContactUsPage;
