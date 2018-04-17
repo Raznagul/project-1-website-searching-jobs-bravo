@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
@@ -6,10 +6,10 @@ import SignInPage from "./Signin";
 import SignUpPage from "./Signup";
 import ForgottenPasswordPage from "./ForgottenPassword";
 import ProfilePage from "./Profile";
+import ContactUs from './ContactUs';
 /*
 import HomePage from "./Home";
 */
-import "./App.css";
 import * as routes from "../constants/routes";
 import { firebase } from "../firebase";
 
@@ -30,6 +30,7 @@ const App = () => (
         <Route exact path={routes.signup} component={() => <SignUpPage />} />
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
+        <Route exact path={routes.contactus} component={() => <ContactUs/>} />
       </main>
     </div>
   </Router>

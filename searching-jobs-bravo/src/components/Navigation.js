@@ -40,6 +40,9 @@ const NavigationAuth = () => (
     <Link className="nav-item nav-link" to={routes.profile}>
       Profile
     </Link>
+    <Link className="nav-item nav-link" to={routes.contactus}>
+      ContactUs
+    </Link>
     <Link
       className="nav-item nav-link"
       to={routes.landing}
@@ -54,6 +57,9 @@ const NavigationNonAuth = () => (
   <div className="navbar-nav">
     <Link className="nav-item nav-link" to={routes.landing}>
       Landing
+    </Link>
+    <Link className="nav-item nav-link" to={routes.contactus}>
+      ContactUs
     </Link>
     <Link className="nav-item nav-link" to={routes.signin}>
       Sign In

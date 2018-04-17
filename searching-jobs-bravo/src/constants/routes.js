@@ -4,3 +4,4 @@ export const landing = '/';
 export const home = '/home';
 export const profile = '/profile';
 export const forgottenpassword = '/forgottenpassword';
+export const contactus = '/contactus';
