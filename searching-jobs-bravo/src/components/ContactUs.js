@@ -2,17 +2,15 @@ import React, {Component} from "react";
 import '../styles/css/contactus.css'
 //Libraries
 import axios from 'axios';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import Textarea from 'react-validation/build/textarea'
-import * as fun_validations from './Validations'
+
+
 
 class ContactUsTitle extends Component {
     render() {
         return (
             <div className="contact-us-title">
                 <h2>Contact Us</h2>
-                <p>Contact Us if you want more information about our
+                <p>Contact with us if you want more information about our
                     products or if you want to work with us</p>
             </div>
         );
@@ -20,7 +18,7 @@ class ContactUsTitle extends Component {
 }
 
 
-class ContactUs extends Component {
+class ContactUsForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,6 +39,7 @@ class ContactUs extends Component {
     closeError = event => {
         event.preventDefault();
         this.setState({error: null});
+
     };
 
     closeSuccess = event => {
@@ -49,25 +48,29 @@ class ContactUs extends Component {
     };
     handleYourNameChange(evt) {
         this.setState({your_name: evt.target.value});
+        //this.form.validate("yourname");
     }
 
     handleEmailChange(evt) {
         this.setState({email: evt.target.value});
-    }
+        //this.form.validate("email");
 
+    }
     handleSubjectChange(evt) {
 
         this.setState({subject: evt.target.value});
+        //this.form.validate("subject");
     }
 
     handleMessageChange(evt) {
         this.setState({message: evt.target.value});
+        //this.form.validate("message");
     }
 
     handleSubmit(event) {
 
         event.preventDefault();
-        this.form.validateAll();
+        //this.form.validateAll();
         var datos = {
             name: this.state.your_name.trim(),
             email: this.state.email.trim(),
@@ -124,7 +127,7 @@ class ContactUs extends Component {
                     </div>
                 )}
                 {success && (
-                    <div className="alert alert-success" role="alert">
+                    <div className="alert " role="alert">
                         Your message has been successfully sent!
                         <button
                             onClick={this.closeSuccess}
@@ -136,33 +139,34 @@ class ContactUs extends Component {
                         </button>
                     </div>
                 )}
-                <Form ref={c => {this.form = c}} className="contact-us-form" onSubmit={this.handleSubmit}>
+                <form  className="needs-validation contact-us-form" novalidate onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Your Name (required)</label>
-                        <Input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange}
-                               validations={[fun_validations.required]}/>
+                        <input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange }
+                               required/>
                     </div>
                     <div className="form-group">
-                        <label>Your Email (required)</label>
-                        <Input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
-                               validations={[fun_validations.required, fun_validations.email]}/>
+                        <label>Your Email </label>
+                        <input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
+                               required/>
                     </div>
                     <div className="form-group">
                         <label>Subject</label>
-                        <Input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
+                        <input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
                     </div>
 
 
                     <div className="form-group">
                         <label>Message</label>
-                        <Textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
-                                  validations={[fun_validations.required]}>
-                    </Textarea>
+                        <textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
+                                  required>
+                        </textarea>
                     </div>
+
                     <div className="form-group">
-                        <button disabled={isInvalid} type="submit" className="btn ">Send</button>
+                        <button  type="submit" className="btn">Send</button>
                     </div>
-                </Form>
+                </form>
             </div>
 
         );
@@ -172,4 +176,33 @@ class ContactUs extends Component {
 
 }
 
-export default ContactUs;
+
+class ContactUsPage extends Component{
+
+    render(){
+
+        return(
+
+            <div className="container">
+                <div className="row">
+                    <div class="col-sm ">
+                        <ContactUsTitle/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div class="col-sm">
+                        <ContactUsForm/>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        );
+    }
+
+
+}
+
+export default ContactUsPage;

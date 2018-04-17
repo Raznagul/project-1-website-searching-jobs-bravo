@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Navigation from "./Navigation";
 import LandingPage from "./LandingPage";
 import SignUpPage from "./Signup";
-import ContactUs from './ContactUs';
+import ContactUsPage from './ContactUs';
 /*
 import SignInPage from "./SignIn";
 import ForgottenPasswordPage from "./ForgottenPassword";
@@ -39,7 +39,7 @@ class App extends Component {
                         <Route
                             exact
                             path={routes.contactus}
-                            component={() => <ContactUs/>}
+                            component={() => <ContactUsPage/>}
                         />
                     </main>
 

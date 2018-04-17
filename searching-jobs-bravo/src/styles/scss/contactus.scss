@@ -6,7 +6,7 @@ $mobile-form-width:80%;
 
 
 .contact-us-title{
-
+  margin-top: 3%;
   width: $mobile-form-width;
   p{
     text-align: justify;
@@ -17,7 +17,20 @@ $mobile-form-width:80%;
 
 .contact-us-form{
   text-align: left;
+  margin-top: 3%;
   width: $mobile-form-width;
+  input:-moz-placeholder {
+    box-shadow:none !important;
+  }
+
+  input:invalid {
+    box-shadow:0 0 3px white;
+  }
+  textarea:invalid {
+    box-shadow:0 0 3px white;
+  }
+
+
   //background-color: red;
 
 }
