@@ -29,13 +29,12 @@ class ContactUsForm extends Component {
             error:false,
             success:false
         };
-        // this.axios=this.axios.bind(this);
         this.handleYourNameChange = this.handleYourNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleAddSecondInput=this.handleAddSecondInput.bind(this);
+        this.handleAlert=this.handleAlert.bind(this);
     }
 
 
@@ -96,10 +95,11 @@ class ContactUsForm extends Component {
             console.log(error.response.statusText);
         });
 
+        document.getElementById("contact-us-form").reset();
 
     }
 
-    handleAddSecondInput() {
+    handleAlert() {
         this.setState({
             error: false,
             success:false
@@ -111,8 +111,8 @@ class ContactUsForm extends Component {
         const isInvalid =
             email === "" || your_name === "" || subject === "" || message === "";
         return (
-            <div>
-                <form  id="contact-us-form" className="needs-validation contact-us-form" novalidate onSubmit={this.handleSubmit}>
+            <div className="contact-us-form">
+                <form  id="contact-us-form" className="needs-validation " novalidate onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Your Name: </label>
                         <input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange }
@@ -142,9 +142,9 @@ class ContactUsForm extends Component {
                 </form>
                 {this.state.error?
                     <div className="alert alert-danger" role="alert">
-                        Oops,something has gone wrong with you message!
+                        <strong>Oops</strong>, something has gone wrong with you message!
                         <button
-                            onClick={this.handleAddSecondInput}
+                            onClick={this.handleAlert}
                             type="button"
                             className="close"
                             aria-label="Close"
@@ -157,9 +157,9 @@ class ContactUsForm extends Component {
                 }
                 {this.state.success?
                     <div className="alert alert-success" role="alert">
-                        Your message has been send successfully !
+                        <strong>Success</strong>, your message has been send successfully !
                         <button
-                            onClick={this.handleAddSecondInput}
+                            onClick={this.handleAlert}
                             type="button"
                             className="close"
                             aria-label="Close"
