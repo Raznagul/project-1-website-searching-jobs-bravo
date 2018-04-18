@@ -5,7 +5,7 @@ import SignInPage from "./Signin";
 import SignUpPage from "./Signup";
 import ForgottenPasswordPage from "./ForgottenPassword";
 import ProfilePage from "./Profile";
-import ContactUs from './ContactUs';
+import ContactUsPage from './ContactUs';
 import Header from './HeaderMenu';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
@@ -32,7 +32,7 @@ const App = () => (
         <Route exact path={routes.signup} component={() => <SignUpPage />} />
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
-        <Route exact path={routes.contactus} component={() => <ContactUs/>} />
+        <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
       </main>
       <Footer/>
     </div>

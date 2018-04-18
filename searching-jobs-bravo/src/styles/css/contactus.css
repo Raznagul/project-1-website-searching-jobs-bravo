@@ -1,4 +1,5 @@
 .contact-us-title {
+  margin-top: 3%;
   width: 80%; }
   .contact-us-title p {
     text-align: justify;
@@ -6,7 +7,14 @@
 
 .contact-us-form {
   text-align: left;
+  margin-top: 3%;
   width: 80%; }
+  .contact-us-form input:-moz-placeholder {
+    box-shadow: none !important; }
+  .contact-us-form input:invalid {
+    box-shadow: 0 0 3px white; }
+  .contact-us-form textarea:invalid {
+    box-shadow: 0 0 3px white; }
 
 @media (min-width: 600px) {
   .contact-us-title {

@@ -2,17 +2,15 @@ import React, {Component} from "react";
 import '../styles/css/contactus.css'
 //Libraries
 import axios from 'axios';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import Textarea from 'react-validation/build/textarea'
-import * as fun_validations from './Validations'
+
+
 
 class ContactUsTitle extends Component {
     render() {
         return (
             <div className="contact-us-title">
                 <h2>Contact Us</h2>
-                <p>Contact Us if you want more information about our
+                <p>Contact with us if you want more information about our
                     products or if you want to work with us</p>
             </div>
         );
@@ -20,7 +18,7 @@ class ContactUsTitle extends Component {
 }
 
 
-class ContactUs extends Component {
+class ContactUsForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,46 +26,45 @@ class ContactUs extends Component {
             email: '',
             subject: '',
             message: '',
-            error:'',
-            success:''
+            error:false,
+            success:false
         };
+        // this.axios=this.axios.bind(this);
         this.handleYourNameChange = this.handleYourNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleAddSecondInput=this.handleAddSecondInput.bind(this);
     }
 
-    closeError = event => {
-        event.preventDefault();
-        this.setState({error: null});
-    };
 
-    closeSuccess = event => {
-        event.preventDefault();
-        this.setState({success:null});
-    };
+
     handleYourNameChange(evt) {
         this.setState({your_name: evt.target.value});
+        //this.form.validate("yourname");
     }
 
     handleEmailChange(evt) {
         this.setState({email: evt.target.value});
-    }
+        //this.form.validate("email");
 
+    }
     handleSubjectChange(evt) {
 
         this.setState({subject: evt.target.value});
+        //this.form.validate("subject");
     }
 
     handleMessageChange(evt) {
         this.setState({message: evt.target.value});
+        //this.form.validate("message");
     }
 
     handleSubmit(event) {
 
         event.preventDefault();
-        this.form.validateAll();
+        //this.form.validateAll();
         var datos = {
             name: this.state.your_name.trim(),
             email: this.state.email.trim(),
@@ -83,24 +80,30 @@ class ContactUs extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(function (response) {
+        }).then((response) => {
             //successs
-            this.setState({success: response});
-            this.setState({error: null});
+            this.setState({success: true});
             console.log(response.data);
             console.log(response.status);
             console.log(response.statusText);
             console.log(response.headers);
-        }).catch(function (error) {
+        }).catch((error) => {
             //fail
-            this.setState({error: error});
-            this.setState({success: null});
+            this.setState({error: true});
             console.log(error.response);
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.statusText);
         });
 
+
+    }
+
+    handleAddSecondInput() {
+        this.setState({
+            error: false,
+            success:false
+        })
     }
 
     render() {
@@ -109,12 +112,39 @@ class ContactUs extends Component {
             email === "" || your_name === "" || subject === "" || message === "";
         return (
             <div>
-                {error && (
+                <form  id="contact-us-form" className="needs-validation contact-us-form" novalidate onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label>Your Name: </label>
+                        <input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange }
+                               required/>
+                    </div>
+                    <div className="form-group">
+                        <label>Your Email:  </label>
+                        <input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
+                               required/>
+                    </div>
+                    <div className="form-group">
+                        <label>Subject: </label>
+                        <input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
+                    </div>
+
+
+                    <div className="form-group">
+                        <label>Message: </label>
+                        <textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
+                                  required>
+                        </textarea>
+                    </div>
+
+                    <div className="form-group">
+                        <button  type="submit" className="btn">Send</button>
+                    </div>
+                </form>
+                {this.state.error?
                     <div className="alert alert-danger" role="alert">
-                        Oops, your something has gone wrong with you message! Dettails:{" "}
-                        {error}
+                        Oops,something has gone wrong with you message!
                         <button
-                            onClick={this.closeError}
+                            onClick={this.handleAddSecondInput}
                             type="button"
                             className="close"
                             aria-label="Close"
@@ -122,12 +152,14 @@ class ContactUs extends Component {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                )}
-                {success && (
+                    :
+                    <div></div>
+                }
+                {this.state.success?
                     <div className="alert alert-success" role="alert">
-                        Your message has been successfully sent!
+                        Your message has been send successfully !
                         <button
-                            onClick={this.closeSuccess}
+                            onClick={this.handleAddSecondInput}
                             type="button"
                             className="close"
                             aria-label="Close"
@@ -135,34 +167,9 @@ class ContactUs extends Component {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                )}
-                <Form ref={c => {this.form = c}} className="contact-us-form" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Your Name (required)</label>
-                        <Input type="text" className="form-control" name="yourname" onChange={this.handleYourNameChange}
-                               validations={[fun_validations.required]}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Your Email (required)</label>
-                        <Input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
-                               validations={[fun_validations.required, fun_validations.email]}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Subject</label>
-                        <Input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
-                    </div>
-
-
-                    <div className="form-group">
-                        <label>Message</label>
-                        <Textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
-                                  validations={[fun_validations.required]}>
-                    </Textarea>
-                    </div>
-                    <div className="form-group">
-                        <button disabled={isInvalid} type="submit" className="btn ">Send</button>
-                    </div>
-                </Form>
+                    :
+                    <div></div>
+                }
             </div>
 
         );
@@ -172,4 +179,35 @@ class ContactUs extends Component {
 
 }
 
-export default ContactUs;
+
+
+
+class ContactUsPage extends Component{
+
+    render(){
+
+        return(
+
+            <div className="container ">
+                <div className="row">
+                    <div class="col-sm ">
+                        <ContactUsTitle/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div class="col-sm">
+                        <ContactUsForm/>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        );
+    }
+
+
+}
+
+export default ContactUsPage;
