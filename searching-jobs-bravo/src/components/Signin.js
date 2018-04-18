@@ -43,7 +43,7 @@ class SignInForm extends Component {
       .signin(email, password)
       .then(() => {
         this.setState(() => ({ ...UserForSignIn }));
-        history.push(routes.home);
+        history.push(routes.landing);
       })
       .catch(error => {
         this.setState(byPropKey("error", error));
