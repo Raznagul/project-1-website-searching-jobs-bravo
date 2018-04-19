@@ -8,60 +8,73 @@ class HeaderMenu extends Component {
 
   render() {
     return (
-      <div className="backColor">
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <img src={require('./../images/BravoLogo.png')} className="logo" alt="logo" />
+      <div className="backcolor">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="navbar-brand">
+            <Link to={routes.landing}>
+              <img src={require('./../images/BravoLogo.png')} className="logo" alt="logo" />
+            </Link>
+
+          </div>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <AuthUserContext.Consumer>
               {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
             </AuthUserContext.Consumer>
           </div>
         </nav>
       </div>
+
     );
   }
 
 }
 
 const NavigationAuth = () => (
-  <div className="navbar-nav ml-auto">
-    <Link className="nav-item nav-link" to={routes.landing}>
-      Landing
-    </Link>
-    <Link className="nav-item nav-link" to={routes.home}>
-      Home
-    </Link>
-    <Link className="nav-item nav-link" to={routes.profile}>
-      Profile
-    </Link>
-    <Link className="nav-item nav-link" to={routes.contactus}>
-      ContactUs
-    </Link>
-    <Link
-      className="nav-item nav-link"
-      to={routes.landing}
-      onClick={auth.signOut}
-    >
-      Sign Out
-    </Link>
-  </div>
+  <ul className="nav navbar-nav ml-auto">
+    <li>
+      <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.home}>Home</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.profile}>Profile</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.landing} onClick={auth.signOut}>Sign Out</Link>
+    </li>
+  </ul>
 );
 
 const NavigationNonAuth = () => (
-  <div className="navbar-nav ml-auto">
-    <Link className="nav-item nav-link" to={routes.landing}>
-      Landing
-    </Link>
-    <Link className="nav-item nav-link" to={routes.contactus}>
-      ContactUs
-    </Link>
-    <Link className="nav-item nav-link" to={routes.signup}>
-      Sign Up
-    </Link>
-    <Link className="nav-item nav-link" to={routes.signin}>
-      Sign In
-    </Link>
-  </div>
+  <ul className="nav navbar-nav ml-auto">
+    <li>
+      <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.signup}>Sign Up</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.signin}>Sign In</Link>
+    </li>
+  </ul>
 );
 
 export default HeaderMenu;
