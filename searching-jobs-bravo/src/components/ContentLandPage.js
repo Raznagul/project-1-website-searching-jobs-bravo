@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LocationSearchInput from './LocationSearchInput';
 import './../styles/css/style.css';
 
 class ContentLandPage extends Component {
@@ -20,7 +21,7 @@ class ContentLandPage extends Component {
                             </div>
                             <div className="col-sm-12 col-md-5 col-lg-5">
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="ubicacion" placeholder="Ubicación" />
+                                    <LocationSearchInput />
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-1 col-lg-1 text-xs-right">
