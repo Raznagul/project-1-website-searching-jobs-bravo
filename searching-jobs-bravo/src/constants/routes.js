@@ -5,3 +5,4 @@ export const home = '/home';
 export const profile = '/profile';
 export const forgottenpassword = '/forgottenpassword';
 export const contactus = '/contactus';
+export const jobsearch = '/jobsearch';
