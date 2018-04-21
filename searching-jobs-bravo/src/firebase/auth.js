@@ -12,3 +12,5 @@ export const passwordReset = email => auth.sendPasswordResetEmail(email);
 
 export const updatePassword = password =>
   auth.currentUser.updatePassword(password);
+
+export const currentUser = () => auth.currentUser;
