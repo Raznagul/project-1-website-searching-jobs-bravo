@@ -29,11 +29,13 @@ class ContactUsForm extends Component {
             error:false,
             success:false
         };
+       // this.axios=this.axios.bind(this);
         this.handleYourNameChange = this.handleYourNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleSubjectChange = this.handleSubjectChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+<<<<<<< 7660abccbb39dc5e84ee90a5a4b6699631f7681d
         this.handleAlert=this.handleAlert.bind(this);
     }
 
@@ -46,6 +48,12 @@ class ContactUsForm extends Component {
     };
 >>>>>>> Validate ContactUs form
 
+=======
+        this.handleAddSecondInput=this.handleAddSecondInput.bind(this);
+    }
+
+
+>>>>>>> Merge las changes with master
 
     handleYourNameChange(evt) {
         this.setState({your_name: evt.target.value});
@@ -103,11 +111,18 @@ class ContactUsForm extends Component {
             console.log(error.response.statusText);
         });
 
+<<<<<<< 7660abccbb39dc5e84ee90a5a4b6699631f7681d
         document.getElementById("contact-us-form").reset();
 
     }
 
     handleAlert() {
+=======
+
+    }
+
+    handleAddSecondInput() {
+>>>>>>> Merge las changes with master
         this.setState({
             error: false,
             success:false
@@ -119,6 +134,7 @@ class ContactUsForm extends Component {
         const isInvalid =
             email === "" || your_name === "" || subject === "" || message === "";
         return (
+<<<<<<< 7660abccbb39dc5e84ee90a5a4b6699631f7681d
             <div className="contact-us-form">
                 <form  id="contact-us-form" className="needs-validation " novalidate onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -189,6 +205,9 @@ class ContactUsForm extends Component {
             </div>
 =======
                 )}
+=======
+            <div>
+>>>>>>> Merge las changes with master
                 <form  className="needs-validation contact-us-form" novalidate onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Your Name (required)</label>
@@ -246,6 +265,36 @@ class ContactUsPage extends Component{
                         <button  type="submit" className="btn">Send</button>
                     </div>
                 </form>
+                {this.state.error?
+                    <div className="alert alert-danger" role="alert">
+                        Oops,something has gone wrong with you message!
+                        <button
+                            onClick={this.handleAddSecondInput}
+                            type="button"
+                            className="close"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    :
+                    <div></div>
+                }
+                {this.state.success?
+                    <div className="alert alert-success" role="alert">
+                        Your message has been send successfully !
+                        <button
+                            onClick={this.handleAddSecondInput}
+                            type="button"
+                            className="close"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    :
+                    <div></div>
+                }
             </div>
 >>>>>>> Validate ContactUs form
 
@@ -262,13 +311,15 @@ class ContactUsPage extends Component{
 <<<<<<< edadf1ac4a57582027dad69638958f1f1e959668
 =======
 
+
+
 class ContactUsPage extends Component{
 
     render(){
 
         return(
 
-            <div className="container">
+            <div className="container ">
                 <div className="row">
                     <div class="col-sm ">
                         <ContactUsTitle/>
