@@ -54,7 +54,7 @@ class SignInForm extends Component {
 
     return (
       <div className="row d-flex justify-content-center">
-        <div className="col-4">
+        <div className="col-lg-4 col-md-5 col-sm-8">
           <h1>Sign In</h1>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
