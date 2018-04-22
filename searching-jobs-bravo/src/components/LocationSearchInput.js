@@ -24,6 +24,7 @@ class LocationSearchInput extends React.Component {
                 value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
+                className="form-control"
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                     <div>
