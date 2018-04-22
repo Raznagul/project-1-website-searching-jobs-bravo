@@ -6,3 +6,4 @@ export const profile = '/profile';
 export const forgottenpassword = '/forgottenpassword';
 export const contactus = '/contactus';
 export const aboutus = '/aboutus';
+export const termsofuse = '/termsofuse';

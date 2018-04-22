@@ -52,10 +52,13 @@ const NavigationAuth = () => (
       <Link className="nav-item nav-link" to={routes.profile}>Profile</Link>
     </li>
     <li>
-      <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
+      <Link className="nav-item nav-link" to={routes.contactus}>Contact Us</Link>
     </li>
-	<li>
-      <Link className="nav-item nav-link" to={routes.aboutus}>AboutUs</Link>
+	  <li>
+      <Link className="nav-item nav-link" to={routes.aboutus}>About Us</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.termsofuse}>Terms Of Use</Link>
     </li>
     <li>
       <Link className="nav-item nav-link" to={routes.landing} onClick={auth.signOut}>Sign Out</Link>
@@ -69,10 +72,13 @@ const NavigationNonAuth = () => (
       <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
     </li>
     <li>
-      <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
+      <Link className="nav-item nav-link" to={routes.contactus}>Contact Us</Link>
     </li>
-	<li>
-      <Link className="nav-item nav-link" to={routes.aboutus}>AboutUs</Link>
+	  <li>
+      <Link className="nav-item nav-link" to={routes.aboutus}>About Us</Link>
+    </li>
+    <li>
+      <Link className="nav-item nav-link" to={routes.termsofuse}>Terms Of Use</Link>
     </li>
     <li>
       <Link className="nav-item nav-link" to={routes.signup}>Sign Up</Link>
