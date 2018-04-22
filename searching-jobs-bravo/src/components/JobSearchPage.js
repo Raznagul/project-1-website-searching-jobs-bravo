@@ -4,7 +4,14 @@ import './../styles/css/style.css';
 
 import axios from 'axios';
 
+const uniq = a => [...new Set(a)];
+
 class JobSearchFilter extends Component {
+
+    constructor(props) {
+        super(props);
+
+    }
 
     show = () => {
         alert('Hello World!');
@@ -15,30 +22,22 @@ class JobSearchFilter extends Component {
         return (
             <div>
                 <select name="Type">
-                    <option value="Type">Type</option>
+                    {this.props.type.map(type =>
+                        <option value={type}>{type}</option>)
+                    }
                 </select>
                 <input name="date" type="date" />
                 <select name="Company">
-                    <option value="Company">Company</option>
+                    {this.props.location.map(location =>
+                        <option value={location}>{location}</option>)
+                    }
                 </select>
-                <button class="justify-content-end" type="button" onClick={this.show}>Click Me!</button>
+                <button type="button" onClick={this.show}>Click Me!</button>
             </div>
         );
     }
 }
-/*
-class JobSearchList extends Component {
-    render() {
-        return (
-            <div border-style="solid">
-                <p>titulo</p>
-                <p>ubicacion</p>
-                <p>fecha</p>
-            </div>
-        );
-    }
-}
-*/
+
 class JobSearchContent extends Component {
     render() {
         return (
@@ -54,32 +53,72 @@ class JobSearchContent extends Component {
                 <div>
                     <p>Job tittle</p>
                     <p>Date posted</p>
-                    <button type="button" onclick="alert('Hello World!')">save</button>
+                    <button type="button">save</button>
                 </div>
                 <div>
                     <p>Description</p>
-                    <button type="button" onclick="alert('Hello World!')">How to apply</button>
+                    <button type="button">How to apply</button>
                 </div>
             </div>
         );
     }
 }
 
-class JobSearchPage extends Component {
+class JobSearchList extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+
+        return (
+            <div>
+                {this.props.jobList.map(item =>
+                    <div>
+                        <p>{item.title}</p>
+                        <p>{item.location}</p>
+                        <p>{item.created_at}</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+class JobSearchPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: [] };
+
+    }
+
+    componentDidMount() {
+        axios.get('https://jobs.github.com/positions.json?description=python&location=new+york')
+            .then(result => {
+                this.setState({ items: result.data });
+                //this.state.items.map(e => console.log(e));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    render() {
+        console.log(this.state.items.map(({title, location, created_at}) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at })));
         return (
 
             <div className="container ">
                 <div className="row">
-                    <div class="col-sm ">
-                        <JobSearchFilter />
+                    <div className="col-sm ">
+                        <JobSearchFilter type={uniq(this.state.items.map(item => item.type))} location={uniq(this.state.items.map(item => item.location))} />
                     </div>
                 </div>
                 <div className="row">
-                    <div class="col-sm-3">
-                        <JobSearchList />
+                    <div className="col-sm-3">
+                        <JobSearchList jobList={this.state.items.map(({title, location, created_at}) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                     </div>
-                    <div class="col-sm-9">
+                    <div className="col-sm-9">
                         <JobSearchContent />
                     </div>
                 </div>
@@ -87,64 +126,7 @@ class JobSearchPage extends Component {
         );
     }
 }
-/*
-class ItemListerasd extends Component {
-    constructor() {
-        super();
-        this.state = { items: [] };
-    }
 
-    componentDidMount() {
-        fetch('https://jobs.github.com/positions.json?description=python&location=new+york')
-            .then(result => {
-                this.setState({ items: result.json() });
-            });
-    }
-
-    render() {
-        return (
-            <div>
-                <div>Items:</div>
-                {this.state.items.map(item => { return <div>{item.name}</div> })}
-            </div>
-        );
-    }
-}
-*/
-class JobSearchList extends Component {
-    constructor() {
-        super();
-        this.state = { items: [] };
-        console.log(this.state);
-
-    }
-
-    componentDidMount() {
-        //axios.get('https://jobs.github.com/positions.json?description=python&location=new+york')
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(result => {
-            this.setState({items:result.data});
-            this.state.items.map(e => console.log(e));
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                {this.state.items.map(item =>
-                    <div>
-                        <p>{item.name}</p>
-                        <p>{item.username}</p>
-                        <p>{item.email}</p>
-                    </div>
-                )}
-            </div>
-        );
-    }
-}
 /*
 class ItemListerzxc extends Component {
 
@@ -172,10 +154,6 @@ class ItemListerzxc extends Component {
 }
 */
 
-const byPropKey = (propertyName, value) => () => ({
-    [propertyName]: value
-});
-
 class Product extends Component {
     constructor(props) {
         super(props);
@@ -184,8 +162,8 @@ class Product extends Component {
     }
 
     buy = () => {
-        //this.setState((state) => ({ qty: state.qty + 1 }));
-        this.setState(byPropKey("qty", this.state.qty + 1));
+        this.setState((state) => ({ qty: state.qty + 1 }));
+        //this.setState(qty: this.state.qty + 1);
         this.props.handletTotal(this.props.price);
     }
 
@@ -298,6 +276,6 @@ class ProductList extends Component {
     }
 }
 
-export default JobSearchList;
+export default JobSearchPage;
 
 export { JobSearchFilter, JobSearchList, JobSearchContent };
