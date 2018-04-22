@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LocationSearchInput from './LocationSearchInput';
 import './../styles/css/style.css';
 
+import axios from 'axios';
+
 class JobSearchFilter extends Component {
     render() {
         return (
@@ -107,24 +109,14 @@ class JobSearchList extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jobs.github.com/positions.json?description=python&location=new+york', {
-        //fetch('https://jsonplaceholder.typicode.com/users', {
-            method: 'GET',
-            mode: 'cors', cache: 'default',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            },
-        }).then(result => result.json())
-            .then(items => this.setState({ items }));
-        /*
-         fetch('https://jobs.github.com/positions.json?description=python&location=new+york', { method: 'GET', headers: { 'Access-Control-Allow-Origin': '*' }, mode: 'cors', cache: 'default' })
-             .then(result => result.json())
-             .then(items => this.setState({ items }));
-             */
-        console.log(this.result);
-        console.log(this.items);
+        axios.get('https://jobs.github.com/positions.json?description=python&location=new+york')
+        .then(result => {
+            this.setState({items:result.data});
+            this.state.items.map(e => console.log(e));
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     render() {

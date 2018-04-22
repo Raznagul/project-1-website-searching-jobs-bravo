@@ -34,7 +34,7 @@ class ProfilePage extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            <h1>{name}'s Profile</h1>
+            <h1>{authUser.email}'s Profile</h1>
             <p>The Home Page is accessible by every signed in user.</p>
           </div>
         )}
