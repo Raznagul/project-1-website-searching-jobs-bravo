@@ -39,25 +39,35 @@ class JobSearchFilter extends Component {
 }
 
 class JobSearchContent extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    show = () => {
+        console.log(this.props.jobContent.company);
+    }
+
     render() {
         return (
             <div>
                 <div>
                     <img src={require('./../images/instagram24.png')} className="icon" alt="Instagram" />
                     <div>
-                        <p>Company name</p>
-                        <p>Direccion</p>
-                        <p>Company url</p>
+                        <p>Company name: {this.props.company}</p>
+                        <p>Direccion: {this.props.location} </p>
+                        <p>Company url: {this.props.company_url} </p>
                     </div>
                 </div>
                 <div>
-                    <p>Job tittle</p>
-                    <p>Date posted</p>
+                    <p>Job tittle: {this.props.title} </p>
+                    <p>Date posted: {this.props.created_at} </p>
                     <button type="button">save</button>
                 </div>
                 <div>
-                    <p>Description</p>
-                    <button type="button">How to apply</button>
+                    <p>Description: {this.props.description} </p>
+                    <p>How to apply: {this.props.how_to_apply} </p>
+                    <button onClick={this.show} type="button">How to apply</button>
                 </div>
             </div>
         );
@@ -105,7 +115,7 @@ class JobSearchPage extends Component {
     }
 
     render() {
-        console.log(this.state.items.map(({title, location, created_at}) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at })));
+        console.log(this.state.items.find(item => item.id === "40af75b0-43da-11e8-8421-06fdf93a68d5"));
         return (
 
             <div className="container ">
@@ -116,10 +126,18 @@ class JobSearchPage extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-3">
-                        <JobSearchList jobList={this.state.items.map(({title, location, created_at}) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
+                        <JobSearchList jobList={this.state.items.map(({ title, location, created_at }) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                     </div>
                     <div className="col-sm-9">
-                        <JobSearchContent />
+                        <JobSearchContent jobContent={this.state.items.map(item => {
+                            if (item.id === "40af75b0-43da-11e8-8421-06fdf93a68d5") {
+                                console.log(item);
+                                return item;
+                            }
+
+                        }
+
+                        )} />
                     </div>
                 </div>
             </div>
