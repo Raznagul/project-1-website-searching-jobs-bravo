@@ -54,6 +54,9 @@ const NavigationAuth = () => (
     <li>
       <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
     </li>
+	<li>
+      <Link className="nav-item nav-link" to={routes.aboutus}>AboutUs</Link>
+    </li>
     <li>
       <Link className="nav-item nav-link" to={routes.landing} onClick={auth.signOut}>Sign Out</Link>
     </li>
@@ -67,6 +70,9 @@ const NavigationNonAuth = () => (
     </li>
     <li>
       <Link className="nav-item nav-link" to={routes.contactus}>ContactUs</Link>
+    </li>
+	<li>
+      <Link className="nav-item nav-link" to={routes.aboutus}>AboutUs</Link>
     </li>
     <li>
       <Link className="nav-item nav-link" to={routes.signup}>Sign Up</Link>

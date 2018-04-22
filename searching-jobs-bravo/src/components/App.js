@@ -9,6 +9,7 @@ import ContactUsPage from './ContactUs';
 import Header from './HeaderMenu';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
+import AboutUs from './AboutUs';
 /*
 import HomePage from "./Home";
 */
@@ -33,6 +34,7 @@ const App = () => (
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
         <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
+		    <Route exact path={routes.aboutus} component={() => <AboutUs />} />
       </main>
       <Footer/>
     </div>
