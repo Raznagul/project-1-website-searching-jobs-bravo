@@ -3,23 +3,23 @@ import LocationSearchInput from './LocationSearchInput';
 import './../styles/css/style.css';
 
 class JobSearchFilter extends Component {
+
+    show = () => {
+        alert('Hello World!');
+    }
+
     render() {
+
         return (
             <div>
-                <select name="cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
+                <select name="Type">
+                    <option value="Type">Type</option>
                 </select>
-                <input name="firstname" type="date" />
-                <select name="cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
+                <input name="date" type="date" />
+                <select name="Company">
+                    <option value="Company">Company</option>
                 </select>
-                <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+                <button class="justify-content-end" type="button" onClick={this.show}>Click Me!</button>
             </div>
         );
     }
@@ -66,10 +66,21 @@ class JobSearchContent extends Component {
 class JobSearchPage extends Component {
     render() {
         return (
-            <div className="landPageContent">
-                <JobSearchFilter />
-                <JobSearchList />
-                <JobSearchContent />
+
+            <div className="container ">
+                <div className="row">
+                    <div class="col-sm ">
+                        <JobSearchFilter />
+                    </div>
+                </div>
+                <div className="row">
+                    <div class="col-sm-3">
+                        <JobSearchList />
+                    </div>
+                    <div class="col-sm-9">
+                        <JobSearchContent />
+                    </div>
+                </div>
             </div>
         );
     }
@@ -107,8 +118,8 @@ class JobSearchList extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jobs.github.com/positions.json?description=python&location=new+york', {
-        //fetch('https://jsonplaceholder.typicode.com/users', {
+        //fetch('https://jobs.github.com/positions.json?description=python&location=new+york', {
+            fetch('https://jsonplaceholder.typicode.com/users', {
             method: 'GET',
             mode: 'cors', cache: 'default',
             headers: {
@@ -172,28 +183,21 @@ const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value
 });
 
-const UserForSignIn = {
-    qty: 0,
-};
-
 class Product extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { ...UserForSignIn };
+        this.state = { qty: 0 };
     }
 
     buy = () => {
-        var component = this;
-        const { qty } = component.state;
         //this.setState((state) => ({ qty: state.qty + 1 }));
-        this.setState(byPropKey("qty", component.state.qty + 1));
+        this.setState(byPropKey("qty", this.state.qty + 1));
+        this.props.handletTotal(this.props.price);
     }
 
     show = () => {
-        var component = this;
-        this.props.handleShow(component.props.name);
-        this.props.handletTotal(component.props.price);
+        this.props.handleShow(this.props.name);
     }
 
     render() {
@@ -223,10 +227,8 @@ class Total extends Component {
 
 class ProductForm extends Component {
 
-    submit(e) {
+    submit = (e) => {
         e.preventDefault();
-
-        //alert("name: " + this.refs.name.value + " - " + this.refs.price.value);
 
         var product = {
             name: this.refs.name.value,
@@ -244,7 +246,7 @@ class ProductForm extends Component {
         return (
             <form onSubmit={this.submit}>
                 <input type="text" placeholder="product name" ref="name" /> -
-                <input type="text" placeholder="product name" ref="name" />
+                <input type="text" placeholder="product price" ref="price" />
                 <br />
                 <button  >Create product</button>
                 <hr />
@@ -268,16 +270,14 @@ class ProductList extends Component {
         };
     }
 
-    createProduct  = (product) => {
+    createProduct = (product) => {
         this.setState({
             productList: this.state.productList.concat(product)
         });
     }
 
     calculateTotal = (price) => {
-        var component = this;
-        this.setState({ total: component.state.total + price });
-        alert(this.state.total);
+        this.setState({ total: this.state.total + price });
 
     }
 
