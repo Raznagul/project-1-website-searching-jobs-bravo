@@ -9,12 +9,16 @@ class LocationSearchInput extends React.Component {
 
     handleChange = (address) => {
         this.setState({ address })
+        this.props.setLatLong('', '');
     }
 
     handleSelect = (address) => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
+            .then(latLng => {
+                console.log('Success', latLng);
+                this.props.setLatLong(latLng.lat, latLng.lng);
+            })
             .catch(error => console.error('Error', error))
     }
 
@@ -24,6 +28,7 @@ class LocationSearchInput extends React.Component {
                 value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
+                className="form-control"
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                     <div>
