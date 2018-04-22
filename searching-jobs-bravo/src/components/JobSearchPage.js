@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LocationSearchInput from './LocationSearchInput';
 import './../styles/css/style.css';
 
+import { Link } from "react-router-dom";
+
 import axios from 'axios';
 
 const uniq = a => [...new Set(a)];
@@ -45,29 +47,38 @@ class JobSearchContent extends Component {
     }
 
     show = () => {
-        console.log(this.props.jobContent.company);
+        alert("saving");
     }
 
     render() {
         return (
             <div>
                 <div>
-                    <img src={require('./../images/instagram24.png')} className="icon" alt="Instagram" />
-                    <div>
-                        <p>Company name: {this.props.company}</p>
-                        <p>Direccion: {this.props.location} </p>
-                        <p>Company url: {this.props.company_url} </p>
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <img style={{ maxHeight: 250, maxWidth: 250 }} src={this.props.jobContent && this.props.jobContent.company_logo} className="icon" alt="Instagram" />
+                        </div>
+                        <div className="col-sm-6">
+                            <div>
+                                <p>Company name: {this.props.jobContent && this.props.jobContent.company}</p>
+                                <p>Direccion: {this.props.jobContent && this.props.jobContent.location} </p>
+                                <p>Company url: <a href={this.props.jobContent && this.props.jobContent.company_url}>{this.props.jobContent && this.props.jobContent.company_url}</a></p>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
+                <hr />
                 <div>
-                    <p>Job tittle: {this.props.title} </p>
-                    <p>Date posted: {this.props.created_at} </p>
-                    <button type="button">save</button>
+                    <p>Job tittle: {this.props.jobContent && this.props.jobContent.title} </p>
+                    <p>Date posted: {this.props.jobContent && this.props.jobContent.created_at} </p>
+                    <button onClick={this.show} type="button">save</button>
                 </div>
+                <hr />
                 <div>
-                    <p>Description: {this.props.description} </p>
-                    <p>How to apply: {this.props.how_to_apply} </p>
-                    <button onClick={this.show} type="button">How to apply</button>
+                    <p dangerouslySetInnerHTML={{ __html: this.props.jobContent && this.props.jobContent.description }} ></p>
+                    <p dangerouslySetInnerHTML={{ __html: this.props.jobContent && this.props.jobContent.how_to_apply }}></p>
                 </div>
             </div>
         );
@@ -89,7 +100,9 @@ class JobSearchList extends Component {
                         <p>{item.title}</p>
                         <p>{item.location}</p>
                         <p>{item.created_at}</p>
+                        <hr/>
                     </div>
+                    
                 )}
             </div>
         );
@@ -129,15 +142,7 @@ class JobSearchPage extends Component {
                         <JobSearchList jobList={this.state.items.map(({ title, location, created_at }) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                     </div>
                     <div className="col-sm-9">
-                        <JobSearchContent jobContent={this.state.items.map(item => {
-                            if (item.id === "40af75b0-43da-11e8-8421-06fdf93a68d5") {
-                                console.log(item);
-                                return item;
-                            }
-
-                        }
-
-                        )} />
+                        <JobSearchContent jobContent={this.state.items.find(item => item.id === "40af75b0-43da-11e8-8421-06fdf93a68d5")} />
                     </div>
                 </div>
             </div>
