@@ -10,6 +10,8 @@ import Header from './HeaderMenu';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
 import JobSearchPage from './JobSearchPage';
+import AboutUs from './AboutUs';
+import TermsOfUse from './TermsOfUse';
 /*
 import HomePage from "./Home";
 */
@@ -37,6 +39,9 @@ const App = () => (
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
         <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
         <Route exact path={routes.jobsearch} component={() => <JobSearchPage/>} />
+		<Route exact path={routes.aboutus} component={() => <AboutUs />} />
+        <Route exact path={routes.termsofuse} component={() => <TermsOfUse />} />
+
       </main>
       <Footer/>
     </div>
