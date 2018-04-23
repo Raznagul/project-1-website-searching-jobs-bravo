@@ -9,6 +9,7 @@ import ContactUsPage from './ContactUs';
 import Header from './HeaderMenu';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
+//import JobSearchPage from './JobSearchPage';
 /*
 import HomePage from "./Home";
 */
@@ -22,21 +23,23 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 import withAuthentication from './withAuthentication';
 
+import './../styles/css/style.css';
+
 const App = () => (
-    <Router>
-        <div>
-            <Header />
-            <main>
-                <Route exact path={routes.landing} component={() => <ContentLandPage />} />
-                <Route exact path={routes.signin} component={() => <SignInPage />} />
-                <Route exact path={routes.signup} component={() => <SignUpPage />} />
-                <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
-                <Route exact path={routes.profile} component={() => <ProfilePage />} />
-                <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
-            </main>
-            <Footer/>
-        </div>
-    </Router>
+  <Router>
+    <div>
+      <Header />
+      <main className="wrap">
+        <Route exact path={routes.landing} component={() => <ContentLandPage />} />
+        <Route exact path={routes.signin} component={() => <SignInPage />} />
+        <Route exact path={routes.signup} component={() => <SignUpPage />} />
+        <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
+        <Route exact path={routes.profile} component={() => <ProfilePage />} />
+        <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
+      </main>
+      <Footer/>
+    </div>
+  </Router>
 );
 
 export default withAuthentication(App);

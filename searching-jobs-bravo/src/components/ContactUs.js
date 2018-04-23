@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import '../styles/css/contactus.css'
-import strings from '../constants/LocalizedLanguages'
 //Libraries
 import axios from 'axios';
-
+import strings from '../constants/LocalizedLanguages'
 
 
 class ContactUsTitle extends Component {
@@ -70,7 +69,7 @@ class ContactUsForm extends Component {
             subject: this.state.subject.trim(),
             message: this.state.message.trim()
         };
-        //alert('Values: ' +JSON.stringify(datos));
+        alert('Values: ' +JSON.stringify(datos));
         axios({
             url: 'https://test1-61478.firebaseio.com/.json',
             method: 'POST',  //HTTP Method
@@ -96,6 +95,7 @@ class ContactUsForm extends Component {
         });
 
         document.getElementById("contact-us-form").reset();
+
     }
 
     handleAlert() {
@@ -118,18 +118,18 @@ class ContactUsForm extends Component {
                                required/>
                     </div>
                     <div className="form-group">
-                        <label>{strings.ContactUsEmail}:  </label>
+                        <label>Your Email:  </label>
                         <input type="email" className="form-control" name="email" onChange={this.handleEmailChange}
                                required/>
                     </div>
                     <div className="form-group">
-                        <label>{strings.ContactUsSubject}: </label>
+                        <label>Subject: </label>
                         <input type="text" className="form-control" name="subject" onChange={this.handleSubjectChange}/>
                     </div>
 
 
                     <div className="form-group">
-                        <label>{strings.ContactUsMessage}: </label>
+                        <label>Message: </label>
                         <textarea className="form-control" rows="5" name="message" onChange={this.handleMessageChange}
                                   required>
                         </textarea>

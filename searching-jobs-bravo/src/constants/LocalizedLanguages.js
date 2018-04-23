@@ -16,6 +16,7 @@ let strings = new LocalizedStrings({
         ContactUsSend:"Send"
     },
     es: {
+        //Navigation Bar
         Landing:"Landing",
         ContactUs:"Contáctenos",
         SignUp:"SingUp",
