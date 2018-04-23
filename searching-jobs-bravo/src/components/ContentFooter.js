@@ -17,15 +17,14 @@ class ContentFooter extends Component {
             select:evt.target.value
         });
         console.log(this.state.select);
-        if(this.state.select==='Español'){
+        if(this.state.select === 'Español'){
             strings.setLanguage('es');
             console.log("es")
 
-        }else if(this.state.select=='Inglés'){
+        }else if(this.state.select === 'Inglés'){
             strings.setLanguage('en');
             console.log("en");
         }
-        //strings.setLanguage('es');
 
     }
 
