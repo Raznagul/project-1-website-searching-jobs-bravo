@@ -8,8 +8,8 @@ import strings from '../constants/LocalizedLanguages'
 class ContactUsTitle extends Component {
     render() {
         return (
-            <div className="contact-us-title">
-                <h2>Contact Us</h2>
+            <div className="col-lg-4 col-md-5 col-sm-8 contact-us-title">
+                <h1>Contact Us</h1>
                 <p>{strings.ContactUsText}</p>
             </div>
         );
@@ -110,7 +110,8 @@ class ContactUsForm extends Component {
         const isInvalid =
             email === "" || your_name === "" || subject === "" || message === "";
         return (
-            <div className="contact-us-form">
+
+            <div className="col-lg-4 col-md-5 col-sm-8 contact-us-form">
                 <form  id="contact-us-form" className="needs-validation " novalidate onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>{strings.ContactUsName}: </label>
@@ -136,7 +137,7 @@ class ContactUsForm extends Component {
                     </div>
 
                     <div className="form-group">
-                        <button  type="submit" className="btn">Send</button>
+                        <button  type="submit" className="btn btn-primary">Send</button>
                     </div>
                 </form>
                 {this.state.error?
@@ -188,15 +189,15 @@ class ContactUsPage extends Component{
         return(
 
             <div className="container ">
-                <div className="row">
-                    <div class="col-sm ">
+                <div className="row d-flex justify-content-center">
+
                         <ContactUsTitle/>
-                    </div>
+
                 </div>
-                <div className="row">
-                    <div class="col-sm">
+                <div className="row d-flex justify-content-center">
+
                         <ContactUsForm/>
-                    </div>
+
                 </div>
 
 
