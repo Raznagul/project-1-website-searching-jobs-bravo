@@ -46,9 +46,6 @@ const NavigationAuth = () => (
       <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
     </li>
     <li>
-      <Link className="nav-item nav-link" to={routes.home}>Home</Link>
-    </li>
-    <li>
       <Link className="nav-item nav-link" to={routes.profile}>Profile</Link>
     </li>
     <li>

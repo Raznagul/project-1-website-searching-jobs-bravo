@@ -12,9 +12,6 @@ import Footer from './Footer';
 import JobSearchPage from './JobSearchPage';
 import AboutUs from './AboutUs';
 import TermsOfUse from './TermsOfUse';
-/*
-import HomePage from "./Home";
-*/
 import * as routes from "../constants/routes";
 import { firebase } from "../firebase";
 
@@ -38,9 +35,9 @@ const App = () => (
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
         <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
-        <Route exact path={routes.jobsearch} component={() => <JobSearchPage/>} />
-		<Route exact path={routes.aboutus} component={() => <AboutUs />} />
+		    <Route exact path={routes.aboutus} component={() => <AboutUs />} />
         <Route exact path={routes.termsofuse} component={() => <TermsOfUse />} />
+        <Route exact path={routes.jobsearch} component={() => <JobSearchPage/>} />
 
       </main>
       <Footer/>
