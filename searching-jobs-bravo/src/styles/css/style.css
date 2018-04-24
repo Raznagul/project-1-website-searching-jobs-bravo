@@ -1,12 +1,11 @@
 body {
   font-family: 'Poppins', sans-serif;
-  /*
-  .jumbotron {
-      background: rgb(200, 54, 54); // This is for ie8 and below 
-      background: rgba(40, 95, 65, 0.5); 
-      padding: 1.5em;
-  }
-  */ }
+  background: #F4F2F5;
+  /* For browsers that do not support gradients */
+  background: linear-gradient(to right, #DBE0E6, #E9ECEF, #DBE0E6);
+  /*background: linear-gradient(to bottom right,#E0DBE3 , #F4F2F5); /* Standard syntax (must be last) */ }
+  body .backgroundo-color {
+    background: linear-gradient(to right, #DBE0E6, #E9ECEF, #DBE0E6); }
   body .landPageContent {
     background: url(../../images/background5.jpg) no-repeat center center;
     background-size: cover;

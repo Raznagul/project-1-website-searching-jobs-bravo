@@ -25,7 +25,7 @@ class Footer extends Component {
                         <div className="col-sm-12 col-md-5 col-lg-4 text-center">
                             <div className="row">
                                 <div className="col-12 pt-1">
-                                    <a href="#!">About Us</a>
+                                    <Link to={routes.aboutus}>About Us</Link>
                                 </div>
                                 <div className="col-12">
                                     <ul className="list-inline text-center mt-3">
@@ -54,7 +54,7 @@ class Footer extends Component {
                                             <Link className="mb-2" to={routes.contactus}>Contact</Link>
                                         </li>
                                         <li className="mb-2">
-                                            <a href="#!">Terms and Conditions</a>
+                                            <Link to={routes.termsofuse}>Terms and Conditions</Link>
                                         </li>
 
                                     </ul>

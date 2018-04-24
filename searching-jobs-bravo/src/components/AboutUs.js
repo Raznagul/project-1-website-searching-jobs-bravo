@@ -5,19 +5,11 @@ import "./../styles/css/style.css";
 class AboutUs extends Component {
   render() {
     return (
-      <div className="landPageContent">
-        <div className="jumbotron">
-          <form className="formSearch" id="formSearch">
-            <div className="row">
-              <div className="col-12 text-center ">
-                <h1 className="jumbotron-heading">About Us!</h1>
-              </div>
-            </div>
-            <div className="contact-us-title col-12 text-center">
-              <h2>What is Bravo job search</h2>
-              <p>
-                Our mission is to help people everywhere find jobs and companies
-                they love. Bravo is one of the newest, growing jobs and
+      <div className="container pt-3 text-center background">
+
+        <div className="border-bottom"><h1>What is Bravo Job Search</h1></div>
+        <span className="pt-2">
+          Bravo is one of the newest, growing jobs and
                 recruiting sites. Bravo holds a big database of millions of
                 company reviews and more features. Unlike other jobs sites, all
                 of this information is entirely shared by those who know a
@@ -35,9 +27,21 @@ class AboutUs extends Component {
                 candidates' decisions as they research jobs and companies. Bravo
                 was created by a group of students at Universidad de Costa Rica
                 in 2018 on the "Diseño of Páginas Web" course
-              </p>
-            </div>
-          </form>
+        </span>
+
+        <div className="border-left border-info text-left pt-4 pl-5 pr-5 mt-4">
+          <h2>Our Vision</h2>
+          <span>
+            Create economic opportunities for each member of the global labor market thanks to the continuous development of the first economic graph in the world.
+          </span>
+        </div>
+
+        <div className="border-right border-info text-right pt-5 pl-5 pr-5 pb-3">
+          <h2>Our Mission</h2>
+          <span>
+            Our mission is to help people everywhere find jobs and companies
+                they love. Organize the information and make it accessible and useful.
+              </span>
         </div>
       </div>
     );

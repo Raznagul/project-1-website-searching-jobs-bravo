@@ -7,7 +7,7 @@ import axios from "axios";
 class ContactUsTitle extends Component {
   render() {
     return (
-      <div className="col-lg-4 col-md-5 col-sm-8 contact-us-title">
+      <div className="col-lg-8 col-md-8 col-sm-8 mt-5 text-center">
         <h1>Contact Us</h1>
         <p>Contact with us if you want more information about our products or if you want to work with us.</p>
       </div>
@@ -152,7 +152,7 @@ class ContactUsForm extends Component {
           </div>
 
           <div className="form-group">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary text float-right">
               Send
             </button>
           </div>
@@ -199,7 +199,7 @@ class ContactUsPage extends Component {
         <div className="row d-flex justify-content-center">
           <ContactUsTitle />
         </div>
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center mb-3">
           <ContactUsForm />
         </div>
       </div>
