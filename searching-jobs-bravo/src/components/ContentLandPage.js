@@ -1,30 +1,50 @@
 import React, { Component } from 'react';
-import LocationSearchInput from './LocationSearchInput';
+import Search from './Search';
 import './../styles/css/style.css';
 
 class ContentLandPage extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            latitud: '',
-            longitud: ''
+            keyword: '',
+            lat: '',
+            long: ''
         }
     }
 
     onSubmit = event => {
         event.preventDefault();
+        console.log('---> ' + this.state.lat);
+        console.log('---> ' + this.state.long);
+        console.log('---> ' + this.state.keyword);
         //Reddirigir a componente de David (Core)
+        console.log('---> ' + this.props.history);
+
+        if (this.state.lat && this.state.long & this.state.keyword) {
+
+        } else if (this.state.lat && this.state.long) {
+
+        } else if (this.state.keyword) {
+
+        } else {
+
+        }
+    }
+
+    handleChange = (event) => {
+        this.changeStateValue(event.target.name, event.target.value);
     }
 
     setLatLong = (lat, long) => {
-        this.setState(
-            {
-                latitud:lat,
-                longitud: long
-            }
-        );
-        
+        this.changeStateValue('lat', lat);
+        this.changeStateValue('long', long);
+    }
+
+    changeStateValue = (key, value) => {
+        let change = {};
+        change[key] = value;
+        this.setState(change);
     }
 
     render() {
@@ -37,26 +57,12 @@ class ContentLandPage extends Component {
                                 <h1 className="jumbotron-heading">Let experts do the searching</h1>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-sm-12 col-md-6 col-lg-6">
-                                <div className="form-group">
-                                    <input type="text" className="form-control" id="palabraClave" placeholder="Palabra clave" />
-                                </div>
-                            </div>
-                            <div className="col-sm-12 col-md-5 col-lg-5">
-                                <div className="form-group">
-                                    <LocationSearchInput setLatLong = {this.setLatLong} />
-                                </div>
-                            </div>
-                            <div className="col-sm-12 col-md-1 col-lg-1 text-xs-right">
-                                <input type="image" alt="Buscar" src={require('./../images/analysis32.png')} />
-                            </div>
-                        </div>
+                        <Search setLatLong={this.setLatLong} handleChange={this.handleChange} />
                     </form>
                 </div>
             </div>
         );
-    }
+    };
 }
 
 export default ContentLandPage;
