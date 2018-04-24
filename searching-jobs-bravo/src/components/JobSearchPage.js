@@ -100,8 +100,8 @@ class JobSearchList extends Component {
         return (
             <div>
                 {this.props.jobList.map(item =>
-                    <div>
-                        <p><a onClick={ () => this.changeContent(item.id)}>{item.title}</a></p>
+                    <div onClick={ () => this.changeContent(item.id)}>
+                        <p>{item.title}</p>
                         <p>{item.location}</p>
                         <p>{item.created_at}</p>
                         <hr />
@@ -127,7 +127,8 @@ class JobSearchPage extends Component {
         axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
-                this.setState({ currentJob: findJobContent(this.state.items, "40af75b0-43da-11e8-8421-06fdf93a68d5") });
+                let firstId = this.state.items[Object.keys(this.state.items)[0]].id;
+                this.setState({ currentJob: findJobContent(this.state.items, firstId) });
                 //this.state.items.map(e => console.log(e));
             })
             .catch(error => {
