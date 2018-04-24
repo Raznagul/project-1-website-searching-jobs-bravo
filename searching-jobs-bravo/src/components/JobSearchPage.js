@@ -9,7 +9,9 @@ import axios from 'axios';
 const uniq = a => [...new Set(a)];
 
 const findJobContent = (a, id) => {
-    return a.find(item => item.id === id);
+    if (typeof a !== 'undefined' && a.length > 0) {
+        return a.find(item => item.id === id);
+    }
 };
 
 class JobSearchFilter extends Component {
@@ -66,8 +68,6 @@ class JobSearchContent extends Component {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <hr />
                 <div>
@@ -91,13 +91,17 @@ class JobSearchList extends Component {
         super(props);
     }
 
+    changeContent = (id) => {
+        this.props.handletCurrentContent(id);
+    }
+
     render() {
 
         return (
             <div>
                 {this.props.jobList.map(item =>
                     <div>
-                        <p>{item.title}</p>
+                        <p><a onClick={ () => this.changeContent(item.id)}>{item.title}</a></p>
                         <p>{item.location}</p>
                         <p>{item.created_at}</p>
                         <hr />
@@ -109,17 +113,21 @@ class JobSearchList extends Component {
     }
 }
 
+const baseURL = "https://jobs.github.com/positions.json?";
+
 class JobSearchPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { job: "", items: [] };
-
+        this.state = { items: [], currentJob: [] };
     }
 
     componentDidMount() {
-        axios.get('https://jobs.github.com/positions.json?description=python&location=new+york')
+        let searchURL = baseURL + this.props.search;
+
+        axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
+                this.setState({ currentJob: findJobContent(this.state.items, "40af75b0-43da-11e8-8421-06fdf93a68d5") });
                 //this.state.items.map(e => console.log(e));
             })
             .catch(error => {
@@ -127,9 +135,13 @@ class JobSearchPage extends Component {
             });
     }
 
-    render() {
-        console.log(findJobContent(this.state.items, "40af75b0-43da-11e8-8421-06fdf93a68d5"));
+    setCurrentJob = (jobId) => {
+        this.setState({ currentJob: findJobContent(this.state.items, jobId) });
+    }
 
+    render() {
+        console.log(this.state.currentJob);
+        let component = this;
         return (
 
             <div className="container ">
@@ -146,10 +158,10 @@ class JobSearchPage extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-3">
-                        <JobSearchList jobList={this.state.items.map(({ title, location, created_at }) => ({ ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
+                        <JobSearchList handletCurrentContent={component.setCurrentJob} jobList={this.state.items.map(({ id, title, location, created_at }) => ({ ["id"]: id, ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                     </div>
                     <div className="col-sm-9">
-                        <JobSearchContent jobContent={findJobContent(this.state.items, "40af75b0-43da-11e8-8421-06fdf93a68d5")} />
+                        <JobSearchContent jobContent={this.state.currentJob} />
                     </div>
                 </div>
             </div>
