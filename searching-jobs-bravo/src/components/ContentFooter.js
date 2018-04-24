@@ -58,11 +58,7 @@ class ContentFooter extends Component {
                                 </div>
                                 <div className="col-sm-9 col-md-6 col-lg-3">
                                     <div className="form-group">
-                                        <select className="form-control" id="sel1">
-                                            <option>Español</option>
-                                            <option>Inglés</option>
-                                            <option>Portugues</option>
-                                        </select>
+                                        <div id="google_translate_element"></div>
                                     </div>
                                 </div>
                             </div>
