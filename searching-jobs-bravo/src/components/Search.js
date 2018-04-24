@@ -21,7 +21,7 @@ class Search extends Component {
                             <LocationSearchInput setLatLong={this.props.setLatLong} />
                         </div>
                     </div>
-                    <div className="col-sm-12 col-md-1 col-lg-1 text-xs-right">
+                    <div className="col-sm-12 col-md-1 col-lg-1">
                         <input type="image" alt="Locate" src={require('./../images/analysis32.png')} />
                     </div>
                 </div>
