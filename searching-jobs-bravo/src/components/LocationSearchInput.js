@@ -34,9 +34,9 @@ class LocationSearchInput extends React.Component {
                     <div>
                         <input
                             {...getInputProps({
-                                placeholder: 'Ubicación',
+                                placeholder: 'Location',
                                 className: 'form-control location-search-input',
-                                id: 'ubicacion'
+                                id: 'location'
                             }) }
                         />
                         <div className="autocomplete-dropdown-container">

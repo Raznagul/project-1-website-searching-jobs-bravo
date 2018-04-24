@@ -25,7 +25,7 @@ class Footer extends Component {
                         <div className="col-sm-12 col-md-5 col-lg-4 text-center">
                             <div className="row">
                                 <div className="col-12 pt-1">
-                                    <a href="#!">Quiénes somos</a>
+                                    <a href="#!">About Us</a>
                                 </div>
                                 <div className="col-12">
                                     <ul className="list-inline text-center mt-3">
@@ -51,10 +51,10 @@ class Footer extends Component {
                                 <div className="col-12">
                                     <ul className="list-unstyled">
                                         <li className="mb-2">
-                                            <Link className="mb-2" to={routes.contactus}>Contacto</Link>
+                                            <Link className="mb-2" to={routes.contactus}>Contact</Link>
                                         </li>
                                         <li className="mb-2">
-                                            <a href="#!">Términos y Condiciones</a>
+                                            <a href="#!">Terms and Conditions</a>
                                         </li>
 
                                     </ul>
