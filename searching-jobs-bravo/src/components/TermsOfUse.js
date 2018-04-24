@@ -9,7 +9,7 @@ class TermsOfUse extends Component {
 
         <div className="border-bottom"><h1>Terms of use</h1></div>
 
-        <div className="row mt-5">
+        <div className="row mt-5 pb-3 text-justify">
           <div className="col-sm-12 col-md-12 col-lg-6">
             <span>
               <p>This web site <strong>Bravo</strong> is owned and operated by Universidad Nacional de Costa Rica. The use of this Site and the content and information available on this Site shall be subject to acceptance of and compliance with the terms and conditions set forth in these terms of use and elsewhere on this Site. Your agreement to comply with and be bound by these Terms of Use is deemed to occur upon your first use of the Site. If you do not agree to these Terms of Use, you should not review information or obtain goods, services or products from this Site. The Sample Store has the total right to edit or delete any content in the Site, including this Agreement, without notifying you.</p>

@@ -36,7 +36,7 @@ class AboutUs extends Component {
           </span>
         </div>
 
-        <div className="border-right border-info text-right pt-5 pl-5 pr-5">
+        <div className="border-right border-info text-right pt-5 pl-5 pr-5 pb-3">
           <h2>Our Mission</h2>
           <span>
             Our mission is to help people everywhere find jobs and companies
