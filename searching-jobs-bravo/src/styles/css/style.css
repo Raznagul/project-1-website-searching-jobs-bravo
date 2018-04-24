@@ -24,5 +24,7 @@ body {
     body .row.no-gutters > [class^="col-"], body .row.no-gutters > [class*=" col-"] {
       padding-right: 0;
       padding-left: 0; }
+  body .wrap {
+    min-height: calc(100vh - 89px); }
 
 /*# sourceMappingURL=style.css.map */
