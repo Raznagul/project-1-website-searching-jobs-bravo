@@ -21,15 +21,15 @@ class JobSearchFilter extends Component {
 
     }
 
-    show = () => {
-        alert('Hello World!');
+    changeFullTime = (event) => {
+        this.props.handleFullTimeState(!event.target.checked);
     }
 
     render() {
 
         return (
             <div>
-                <label>Full time only</label><input type="checkbox" name="full_time" value="true" />
+                <label>Full time only</label><input defaultChecked={false} onChange={this.changeFullTime} type="checkbox" name="full_time" />
                 <input name="date" type="date" />
                 <select name="Company">
                     {this.props.location.map(location =>
@@ -100,7 +100,7 @@ class JobSearchList extends Component {
         return (
             <div>
                 {this.props.jobList.map(item =>
-                    <div onClick={ () => this.changeContent(item.id)}>
+                    <div onClick={() => this.changeContent(item.id)}>
                         <p>{item.title}</p>
                         <p>{item.location}</p>
                         <p>{item.created_at}</p>
@@ -118,16 +118,16 @@ const baseURL = "https://jobs.github.com/positions.json?";
 class JobSearchPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { items: [], currentJob: [] };
+        this.state = { items: [], currentJob: [], fullTime: false };
     }
 
     componentDidMount() {
-        let searchURL = baseURL + this.props.search;
-
+        let searchURL = baseURL + this.props.search + (this.state.fullTime ? "&full_time=true" : "");
+        console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
-                let firstId = this.state.items[Object.keys(this.state.items)[0]].id;
+                let firstId = this.state.items[Object.keys(this.state.items)[0]] && this.state.items[Object.keys(this.state.items)[0]].id;
                 this.setState({ currentJob: findJobContent(this.state.items, firstId) });
                 //this.state.items.map(e => console.log(e));
             })
@@ -136,12 +136,18 @@ class JobSearchPage extends Component {
             });
     }
 
+    setFullTime = (state) => {
+        this.setState({ fullTime: state }, this.fireOnSelect );
+        //() => this.fireOnSelect() 
+        //this.fireOnSelect
+        this.componentDidMount();
+    }
+
     setCurrentJob = (jobId) => {
         this.setState({ currentJob: findJobContent(this.state.items, jobId) });
     }
 
     render() {
-        console.log(this.state.currentJob);
         let component = this;
         return (
 
@@ -154,7 +160,7 @@ class JobSearchPage extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm ">
-                        <JobSearchFilter location={uniq(this.state.items.map(item => item.location))} />
+                        <JobSearchFilter handleFullTimeState={component.setFullTime} location={uniq(this.state.items.map(item => item.location))} />
                     </div>
                 </div>
                 <div className="row">
