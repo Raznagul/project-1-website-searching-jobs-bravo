@@ -2,31 +2,16 @@ import React, { Component } from 'react';
 import './../styles/css/style.css';
 import * as routes from "../constants/routes";
 import { Link } from "react-router-dom";
-import strings from "../constants/LocalizedLanguages"
+
 class ContentFooter extends Component {
     constructor(props) {
         super(props);
         this.state = {
             select:''
         };
-        this.handleSelectLenguage= this.handleSelectLenguage.bind(this);
 
     }
-    handleSelectLenguage(evt){
-        this.setState({
-            select:evt.target.value
-        });
-        console.log(this.state.select);
-        if(this.state.select === 'Español'){
-            strings.setLanguage('es');
-            console.log("es")
 
-        }else if(this.state.select === 'Inglés'){
-            strings.setLanguage('en');
-            console.log("en");
-        }
-
-    }
 
     render() {
         return (

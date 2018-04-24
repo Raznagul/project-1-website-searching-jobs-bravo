@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import "../styles/css/contactus.css";
 //Libraries
 import axios from "axios";
-import strings from "../constants/LocalizedLanguages";
+
 
 class ContactUsTitle extends Component {
   render() {
     return (
       <div className="col-lg-4 col-md-5 col-sm-8 contact-us-title">
         <h1>Contact Us</h1>
-        <p>{strings.ContactUsText}</p>
+        <p>Contact with us if you want more information about our products or if you want to work with us.</p>
       </div>
     );
   }
@@ -111,7 +111,7 @@ class ContactUsForm extends Component {
           onSubmit={this.handleSubmit}
         >
           <div className="form-group">
-            <label>{strings.ContactUsName}: </label>
+            <label>Your name: </label>
             <input
               type="text"
               className="form-control"
