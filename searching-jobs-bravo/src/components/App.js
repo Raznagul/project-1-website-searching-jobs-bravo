@@ -12,7 +12,6 @@ import Footer from './Footer';
 import JobSearchPage from './JobSearchPage';
 import AboutUs from './AboutUs';
 import TermsOfUse from './TermsOfUse';
-
 import * as routes from "../constants/routes";
 import { firebase } from "../firebase";
 
@@ -23,11 +22,13 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 import withAuthentication from './withAuthentication';
 
+import './../styles/css/style.css';
+
 const App = () => (
   <Router>
     <div>
       <Header />
-      <main>
+      <main className="wrap">
         <Route exact path={routes.landing} component={() => <ContentLandPage />} />
         <Route exact path={routes.signin} component={() => <SignInPage />} />
         <Route exact path={routes.signup} component={() => <SignUpPage />} />
