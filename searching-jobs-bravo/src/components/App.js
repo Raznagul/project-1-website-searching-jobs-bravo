@@ -6,7 +6,7 @@ import SignUpPage from "./Signup";
 import ForgottenPasswordPage from "./ForgottenPassword";
 import ProfilePage from "./Profile";
 import ContactUsPage from './ContactUs';
-import Header from './HeaderMenu';
+import Header from './Header';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
 import JobSearchPage from './JobSearchPage';
