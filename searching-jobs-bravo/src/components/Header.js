@@ -40,19 +40,7 @@ class Header extends Component {
 const NavigationAuth = () => (
     <ul className="nav navbar-nav ml-auto">
         <li>
-            <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
-        </li>
-        <li>
             <Link className="nav-item nav-link" to={routes.profile}>Profile</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.contactus}>Contact Us</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.aboutus}>About Us</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.termsofuse}>Terms Of Use</Link>
         </li>
         <li>
             <Link className="nav-item nav-link" to={routes.landing} onClick={auth.signOut}>Sign Out</Link>
@@ -62,18 +50,6 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
     <ul className="nav navbar-nav ml-auto">
-        <li>
-            <Link className="nav-item nav-link" to={routes.landing}>Landing</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.contactus}>Contact Us</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.aboutus}>About Us</Link>
-        </li>
-        <li>
-            <Link className="nav-item nav-link" to={routes.termsofuse}>Terms Of Use</Link>
-        </li>
         <li>
             <Link className="nav-item nav-link" to={routes.signup}>Sign Up</Link>
         </li>
