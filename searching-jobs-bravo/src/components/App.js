@@ -10,9 +10,9 @@ import Header from './HeaderMenu';
 import ContentLandPage from './ContentLandPage';
 import Footer from './Footer';
 import JobSearchPage from './JobSearchPage';
-/*
-import HomePage from "./Home";
-*/
+import AboutUs from './AboutUs';
+import TermsOfUse from './TermsOfUse';
+
 import * as routes from "../constants/routes";
 import { firebase } from "../firebase";
 
@@ -34,7 +34,8 @@ const App = () => (
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
         <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
-        <Route exact path={routes.jobsearch} component={() => <JobSearchPage/>} />
+		    <Route exact path={routes.aboutus} component={() => <AboutUs />} />
+        <Route exact path={routes.termsofuse} component={() => <TermsOfUse />} />
       </main>
       <Footer/>
     </div>
