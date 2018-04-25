@@ -8,7 +8,7 @@ class Header extends Component {
     render() {
         return (
             <header className="backcolor">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light backColor">
                     <div className="navbar-brand">
                         <Link to={routes.landing}>
                             <img src={require('./../images/BravoLogo.png')} className="logo" alt="logo" />
