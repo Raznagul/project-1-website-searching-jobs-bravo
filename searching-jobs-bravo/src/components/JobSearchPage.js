@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const uniq = a => [...new Set(a)];
 
-const findJobContent = (a, id) => {
+const findJobContentById = (a, id) => {
     if (typeof a !== 'undefined' && a.length > 0) {
         return a.find(item => item.id === id);
     }
@@ -26,7 +26,16 @@ class JobSearchFilter extends Component {
     }
 
     changeFullTime = (event) => {
-        this.props.handleFullTimeState(!event.target.checked);
+        this.props.handleFullTimeState((event.target.checked ? "Full Time" : "-"));
+    }
+
+    changeDate = (event) => {
+        let dateDarts = event.target.value.split('-');
+        this.props.handleDateState(new Date(dateDarts[0], dateDarts[1] - 1, dateDarts[2]));
+    }
+
+    changeCompany = (event) => {
+        this.props.handleCompanyState(event.target.value);
     }
 
     render() {
@@ -38,10 +47,10 @@ class JobSearchFilter extends Component {
                     <label className="form-check-label" for="full_time">Only Fulltime</label>
                 </div>
                 <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
-                    <input name="date" type="date" className="form-control" />
+                    <input name="date" type="date" className="form-control" onChange={this.changeDate} />
                 </div>
                 <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
-                    <select className="form-control" name="Company">
+                    <select className="form-control" name="Company" onChange={this.changeCompany}>
                         <option disabled selected value>-- Company --</option>
                         {this.props.company.map(company =>
                             <option value={company}>{company}</option>)
@@ -95,8 +104,11 @@ class JobSearchPage extends Component {
         super(props);
         this.state = {
             items: [],
+            itemsToShow: [],
             currentJob: [],
-            fullTime: false,
+            fullTimeFilterData: '-',
+            dateFilterData: '',
+            companyFilterData: '-',
             keyword: '',
             lat: '',
             long: ''
@@ -115,8 +127,9 @@ class JobSearchPage extends Component {
         axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
+                this.setState({ itemsToShow: result.data });
                 let firstId = this.state.items[Object.keys(this.state.items)[0]] && this.state.items[Object.keys(this.state.items)[0]].id;
-                this.setState({ currentJob: findJobContent(this.state.items, firstId) });
+                this.setState({ currentJob: findJobContentById(this.state.items, firstId) });
                 //this.state.items.map(e => console.log(e));
             })
             .catch(error => {
@@ -124,15 +137,45 @@ class JobSearchPage extends Component {
             });
     }
 
-    setFullTime = (state) => {
-        this.setState({ fullTime: state }, this.fireOnSelect);
-        //() => this.fireOnSelect() 
-        //this.fireOnSelect
-        this.componentDidMount();
+    filterFullTime = (state) => {
+        this.setState({ fullTimeFilterData: state }, this.fireOnSelect);
+        this.runFilters(state, "fullTime");
+    }
+
+    filterDate = (state) => {
+        this.setState({ dateFilterData: state }, this.fireOnSelect);
+        this.runFilters(state, "date");
+    }
+
+    filterCompany = (state) => {
+        this.setState({ companyFilterData: state }, this.fireOnSelect);
+        this.runFilters(state, "state");
+    }
+
+    runFilters(currentChange, filter) {
+        let tempItems = this.state.items;
+        if ((filter === "fullTime" ? currentChange : this.state.fullTimeFilterData) !== "-") {
+            tempItems = tempItems.filter(item => item.type === (filter === "fullTime" ? currentChange : this.state.fullTimeFilterData));
+        }
+
+        if ((filter === "date" ? currentChange : this.state.dateFilterData) !== "") {
+            tempItems = tempItems.filter(item => (new Date(item.created_at)).getTime() >= (filter === "date" ? (currentChange.getTime()) : (this.state.dateFilterData.getTime())));
+        }
+
+        if ((filter === "state" ? currentChange : this.state.companyFilterData) !== "-") {
+            tempItems = tempItems.filter(item => item.company === (filter === "state" ? currentChange : this.state.companyFilterData));
+        }
+        let firstId = tempItems[Object.keys(tempItems)[0]] && tempItems[Object.keys(tempItems)[0]].id;
+        this.setState({ currentJob: findJobContentById(tempItems, firstId) });
+        this.setState({ itemsToShow: tempItems });
+
+        console.log("companyFilterItems");
+        console.log(this.state.itemsToShow);
+
     }
 
     setCurrentJob = (jobId) => {
-        this.setState({ currentJob: findJobContent(this.state.items, jobId) });
+        this.setState({ currentJob: findJobContentById(this.state.items, jobId) });
     }
 
     onSubmit = event => {
@@ -175,12 +218,12 @@ class JobSearchPage extends Component {
                 <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3 border-top">
                     <div className="row">
                         <div className="col-12">
-                            <JobSearchFilter handleFullTimeState={component.setFullTime} company={uniq(this.state.items.map(item => item.company))} />
+                            <JobSearchFilter handleFullTimeState={component.filterFullTime} handleDateState={component.filterDate} handleCompanyState={component.filterCompany} company={uniq(this.state.items.map(item => item.company))} />
                         </div>
                     </div>
                     <div className="row pt-2">
                         <div className="col-sm-3 border-right">
-                            <JobSearchList handletCurrentContent={component.setCurrentJob} jobList={this.state.items.map(({ id, title, location, created_at }) => ({ ["id"]: id, ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
+                            <JobSearchList handletCurrentContent={component.setCurrentJob} jobList={this.state.itemsToShow.map(({ id, title, location, created_at }) => ({ ["id"]: id, ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                         </div>
                         <div className="col-sm-9">
                             <JobSearchContent jobContent={this.state.currentJob} />
