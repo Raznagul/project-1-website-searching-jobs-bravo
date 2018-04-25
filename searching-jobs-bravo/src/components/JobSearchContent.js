@@ -34,7 +34,7 @@ class JobSearchContent extends Component {
     }
 
     render() {
-        if (this.props.jobContent && this.props.jobContent.length > 0) {
+        if (Object.keys(this.props.jobContent) && Object.keys(this.props.jobContent).length > 0) {
             return (
                 <div>
                     <div>
