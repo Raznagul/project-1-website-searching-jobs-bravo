@@ -25,6 +25,17 @@ body {
       padding-left: 0; }
   body .wrap {
     min-height: calc(100vh - 89px); }
+  body .card-profile {
+    padding-top: 5%; }
+    body .card-profile img {
+      width: 25em;
+      height: 20em; }
+  @media (min-width: 600px) {
+    body .card-profile {
+      padding-top: 5%; }
+      body .card-profile img {
+        width: 10em;
+        height: 5em; } }
   body .listElement {
     cursor: pointer; }
   body .listElement:hover {
