@@ -25,5 +25,7 @@ body {
       padding-left: 0; }
   body .wrap {
     min-height: calc(100vh - 89px); }
+  body .card-profile {
+    margin-top: 5%; }
 
 /*# sourceMappingURL=style.css.map */

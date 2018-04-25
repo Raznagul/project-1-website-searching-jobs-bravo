@@ -33,10 +33,19 @@ class ProfilePage extends Component {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <div>
-            <h1>{authUser.email}'s Profile</h1>
-            <p>The Home Page is accessible by every signed in user.</p>
+        <div class="row d-flex justify-content-center ">
+          <div  class="card backColor card-profile" >
+              <img class="card-img-top " src={require('./../images/user.png')} alt="Card image cap"/>
+              <div class="card-body">
+                  <h5 class="card-title ">{name}</h5>
+                  <p class="card-text"><strong>Complete name: </strong> {name}{lastname}</p>
+                  <p class="card-text"><strong>Email: </strong>{email}</p>
+              </div>
+
           </div>
+
+        </div>
+
         )}
       </AuthUserContext.Consumer>
     );
