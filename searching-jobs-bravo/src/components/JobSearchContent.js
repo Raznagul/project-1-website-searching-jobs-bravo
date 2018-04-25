@@ -43,17 +43,17 @@ class JobSearchContent extends Component {
                         </div>
                         <div className="col-sm-6">
                             <div>
-                                <p>Company name: {this.props.jobContent && this.props.jobContent.company}</p>
-                                <p>Direccion: {this.props.jobContent && this.props.jobContent.location} </p>
-                                <p>Company url: <a href={this.props.jobContent && this.props.jobContent.company_url}>{this.props.jobContent && this.props.jobContent.company_url}</a></p>
+                                <p><b>Company name:</b> {this.props.jobContent && this.props.jobContent.company}</p>
+                                <p><b>Direccion:</b> {this.props.jobContent && this.props.jobContent.location} </p>
+                                <p><b>Company url:</b> <a href={this.props.jobContent && this.props.jobContent.company_url}>{this.props.jobContent && this.props.jobContent.company_url}</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div>
-                    <p>Job tittle: {this.props.jobContent && this.props.jobContent.title} </p>
-                    <p>Date posted: {this.props.jobContent && this.props.jobContent.created_at} </p>
+                    <p><b>Job tittle:</b> {this.props.jobContent && this.props.jobContent.title} </p>
+                    <p><b>Date posted:</b> {this.props.jobContent && this.props.jobContent.created_at} </p>
                     <button onClick={this.show} type="button">save</button>
                 </div>
                 <hr />

@@ -67,16 +67,19 @@ class JobSearchList extends Component {
         this.props.handletCurrentContent(id);
     }
 
+    getFormattedDate(date) {
+        return new Date(date).toDateString("MM-dd");
+    }
+
     render() {
 
         return (
             <div>
                 {this.props.jobList.map(item =>
-                    <div onClick={() => this.changeContent(item.id)}>
-                        <p>{item.title}</p>
-                        <p>{item.location}</p>
-                        <p>{item.created_at}</p>
-                        <hr />
+                    <div onClick={() => this.changeContent(item.id)} className="border-bottom pb-2 pt-2 listElement">
+                        <b><a>{item.title}</a></b><br />
+                        <a className="small">{item.location}</a><br />
+                        <a className="small">{this.getFormattedDate(item.created_at)}</a>
                     </div>
 
                 )}
@@ -106,14 +109,14 @@ class JobSearchPage extends Component {
         this.requestAPI(params);
     }
 
-    requestAPI(params){
+    requestAPI(params) {
         let searchURL = baseURL + params;
         console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
                 let firstId = this.state.items[Object.keys(this.state.items)[0]] && this.state.items[Object.keys(this.state.items)[0]].id;
-                    this.setState({ currentJob: findJobContent(this.state.items, firstId) });
+                this.setState({ currentJob: findJobContent(this.state.items, firstId) });
                 //this.state.items.map(e => console.log(e));
             })
             .catch(error => {
@@ -166,17 +169,17 @@ class JobSearchPage extends Component {
         return (
             <div>
                 <div className="backColor pt-2 pl-3 pr-3 pb-1">
-                    <Search setLatLong={this.setLatLong} handleChange={this.handleChange} onSubmit={this.onSubmit}/>
+                    <Search setLatLong={this.setLatLong} handleChange={this.handleChange} onSubmit={this.onSubmit} />
                 </div>
 
-                <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3">
+                <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3 border-top">
                     <div className="row">
                         <div className="col-12">
                             <JobSearchFilter handleFullTimeState={component.setFullTime} company={uniq(this.state.items.map(item => item.company))} />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-sm-3">
+                    <div className="row pt-2">
+                        <div className="col-sm-3 border-right">
                             <JobSearchList handletCurrentContent={component.setCurrentJob} jobList={this.state.items.map(({ id, title, location, created_at }) => ({ ["id"]: id, ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                         </div>
                         <div className="col-sm-9">

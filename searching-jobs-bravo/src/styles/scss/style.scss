@@ -1,6 +1,8 @@
 
 body{
     $backgroundColor: linear-gradient(to right, #DBE0E6, #E9ECEF, #DBE0E6);
+    $backColor: #F2F2F2;
+
     font-family: 'Poppins', sans-serif;
     background: #F4F2F5; /* For browsers that do not support gradients */
     background: $backgroundColor;
@@ -19,7 +21,7 @@ body{
 
 
     .backColor{
-        background-color: #F2F2F2;
+        background-color: $backColor;
     }
 
     .vertical-center {
@@ -43,6 +45,14 @@ body{
     .wrap {
         min-height: calc(100vh - 89px);
         
+    }
+
+    .listElement{
+        cursor: pointer;
+    }
+
+    .listElement:hover{
+        background-color: lighten($backColor, 25%);
     }
 
 }
