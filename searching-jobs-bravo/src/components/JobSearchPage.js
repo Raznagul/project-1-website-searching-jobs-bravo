@@ -42,8 +42,8 @@ class JobSearchFilter extends Component {
                 </div>
                 <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
                     <select className="form-control" name="Company">
-                        {this.props.location.map(location =>
-                            <option value={location}>{location}</option>)
+                        {this.props.company.map(company =>
+                            <option value={company}>{company}</option>)
                         }
                     </select>
                 </div>
@@ -100,7 +100,7 @@ class JobSearchPage extends Component {
     }
 
     componentDidMount() {
-        let searchURL = baseURL + (typeof yourvar !== 'undefined' ? this.props.match.params.search : "") + (this.state.fullTime ? "&full_time=true" : "");
+        let searchURL = baseURL + (typeof this.props.match.params.search !== 'undefined' ? this.props.match.params.search : "") + (this.state.fullTime ? "&full_time=true" : "");
         console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
@@ -165,7 +165,7 @@ class JobSearchPage extends Component {
                 <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3">
                     <div className="row">
                         <div className="col-12">
-                            <JobSearchFilter handleFullTimeState={component.setFullTime} location={uniq(this.state.items.map(item => item.location))} />
+                            <JobSearchFilter handleFullTimeState={component.setFullTime} company={uniq(this.state.items.map(item => item.company))} />
                         </div>
                     </div>
                     <div className="row">
