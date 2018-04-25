@@ -38,6 +38,7 @@ const App = () => (
         <Route exact path={routes.aboutus} component={() => <AboutUs />} />
         <Route exact path={routes.termsofuse} component={() => <TermsOfUse />} />
         <Route path={routes.jobsearch + "/:search"} component={() => <JobSearchPage />} />
+        <Route exact path={routes.jobsearch} component={() => <JobSearchPage />} />
       </main>
       <Footer />
     </div>

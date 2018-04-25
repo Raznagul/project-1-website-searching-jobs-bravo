@@ -84,7 +84,7 @@ class JobSearchPage extends Component {
     }
 
     componentDidMount() {
-        let searchURL = baseURL + this.props.match.params.search + (this.state.fullTime ? "&full_time=true" : "");
+        let searchURL = baseURL + (typeof yourvar !== 'undefined' ? this.props.match.params.search : "") + (this.state.fullTime ? "&full_time=true" : "");
         console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
