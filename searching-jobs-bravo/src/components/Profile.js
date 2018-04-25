@@ -93,11 +93,11 @@ class ProfilePage extends Component {
                                 {this.state.jobs  && this.state.jobs.length > 1 ? 
                                     this.state.jobs.map(e => 
                                         <li class="list-group-item">
-                                            <p>Job title: {e.job.title}</p>
-                                            <p>job id: {e.job.id}</p>
-                                            <p>company: {e.job.company}</p>
-                                            <p>Posted date: {e.job.postedAt}</p>
-                                        </li>) : ""}
+                                            <p><strong>Job title: </strong> {e.job.title}</p>
+                                            <p><strong>Company: </strong> {e.job.company}</p>
+                                            <p><strong>Posted date: </strong> {e.job.postedAt}</p>
+                                        </li>) 
+                                : ""}
                             </ul>
                         </div>
 
