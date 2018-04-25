@@ -42,6 +42,7 @@ class JobSearchFilter extends Component {
                 </div>
                 <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
                     <select className="form-control" name="Company">
+                        <option disabled selected value>-- Company --</option>
                         {this.props.company.map(company =>
                             <option value={company}>{company}</option>)
                         }
