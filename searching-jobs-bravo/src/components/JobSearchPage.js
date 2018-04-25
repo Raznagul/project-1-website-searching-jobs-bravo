@@ -26,11 +26,12 @@ class JobSearchFilter extends Component {
     }
 
     changeFullTime = (event) => {
-        this.props.handleFullTimeState(event.target.checked);
+        this.props.handleFullTimeState((event.target.checked ? "Full Time" : "-"));
     }
 
     changeDate = (event) => {
-        this.props.handleDateState(event.target.value);
+        let dateDarts = event.target.value.split('-');
+        this.props.handleDateState(new Date(dateDarts[0], dateDarts[1] - 1, dateDarts[2]));
     }
 
     changeCompany = (event) => {
@@ -50,7 +51,7 @@ class JobSearchFilter extends Component {
                 </div>
                 <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
                     <select className="form-control" name="Company" onChange={this.changeCompany}>
-                        <option value="-">-</option>)
+                        <option disabled selected value>-- Company --</option>
                         {this.props.company.map(company =>
                             <option value={company}>{company}</option>)
                         }
@@ -75,16 +76,19 @@ class JobSearchList extends Component {
         this.props.handletCurrentContent(id);
     }
 
+    getFormattedDate(date) {
+        return new Date(date).toDateString("MM-dd");
+    }
+
     render() {
 
         return (
             <div>
                 {this.props.jobList.map(item =>
-                    <div onClick={() => this.changeContent(item.id)}>
-                        <p>{item.title}</p>
-                        <p>{item.location}</p>
-                        <p>{item.created_at}</p>
-                        <hr />
+                    <div onClick={() => this.changeContent(item.id)} className="border-bottom pb-2 pt-2 listElement">
+                        <b><a>{item.title}</a></b><br />
+                        <a className="small">{item.location}</a><br />
+                        <a className="small">{this.getFormattedDate(item.created_at)}</a>
                     </div>
 
                 )}
@@ -189,6 +193,42 @@ class JobSearchPage extends Component {
         console.log(c);
         console.log("fullTimeFilterData " + this.state.companyFilterData);
 
+        filterFullTime = (state) => {
+            this.setState({ fullTimeFilterData: state }, this.fireOnSelect);
+            this.runFilters(state, "fullTime");
+        }
+
+        filterDate = (state) => {
+            this.setState({ dateFilterData: state }, this.fireOnSelect);
+            this.runFilters(state, "date");
+        }
+
+        filterCompany = (state) => {
+            this.setState({ companyFilterData: state }, this.fireOnSelect);
+            this.runFilters(state, "state");
+        }
+    }
+
+    runFilters(currentChange, filter) {
+        let tempItems = this.state.items;
+        if ((filter === "fullTime" ? currentChange : this.state.fullTimeFilterData) !== "-") {
+            tempItems = tempItems.filter(item => item.type === (filter === "fullTime" ? currentChange : this.state.fullTimeFilterData));
+        }
+
+        if ((filter === "date" ? currentChange : this.state.dateFilterData) !== "") {
+            tempItems = tempItems.filter(item => (new Date(item.created_at)).getTime() >= (filter === "date" ? (currentChange.getTime()) : (this.state.dateFilterData.getTime())));
+        }
+
+        if ((filter === "state" ? currentChange : this.state.companyFilterData) !== "-") {
+            tempItems = tempItems.filter(item => item.company === (filter === "state" ? currentChange : this.state.companyFilterData));
+        }
+        let firstId = tempItems[Object.keys(tempItems)[0]] && tempItems[Object.keys(tempItems)[0]].id;
+        this.setState({ currentJob: findJobContentById(tempItems, firstId) });
+        this.setState({ itemsToShow: tempItems });
+
+        console.log("companyFilterItems");
+        console.log(this.state.itemsToShow);
+
     }
 
     setCurrentJob = (jobId) => {
@@ -232,14 +272,14 @@ class JobSearchPage extends Component {
                     <Search setLatLong={this.setLatLong} handleChange={this.handleChange} onSubmit={this.onSubmit} />
                 </div>
 
-                <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3">
+                <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3 border-top">
                     <div className="row">
                         <div className="col-12">
                             <JobSearchFilter handleFullTimeState={component.filterFullTime} handleDateState={component.filterDate} handleCompanyState={component.filterCompany} company={uniq(this.state.items.map(item => item.company))} />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-sm-3">
+                    <div className="row pt-2">
+                        <div className="col-sm-3 border-right">
                             <JobSearchList handletCurrentContent={component.setCurrentJob} jobList={this.state.itemsToShow.map(({ id, title, location, created_at }) => ({ ["id"]: id, ["title"]: title, ["location"]: location, ["created_at"]: created_at }))} />
                         </div>
                         <div className="col-sm-9">
