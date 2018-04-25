@@ -20,7 +20,10 @@ class JobSearchContent extends Component {
           if(!authUser){
             this.props.history.push(routes.signin);
           }
+          else{
             alert(this.props.jobContent.id);
+                db.updateSavedJobs(authUser.uid, this.props.jobContent.id);
+            }
           });
     }
 
