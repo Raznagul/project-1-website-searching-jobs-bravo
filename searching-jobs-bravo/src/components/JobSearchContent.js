@@ -67,7 +67,7 @@ class JobSearchContent extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <p><b>Date posted:</b> {this.props.jobContent && this.props.jobContent.created_at} </p>
+                            <p><b>Date posted:</b> {this.props.jobContent && new Intl.DateTimeFormat('en-US').format(new Date(this.props.jobContent.created_at))} </p>
                         </div>
                     </div>
                     <hr />

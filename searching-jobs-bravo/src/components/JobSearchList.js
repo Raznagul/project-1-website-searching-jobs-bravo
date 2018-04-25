@@ -33,12 +33,12 @@ class JobSearchList extends Component {
                             <div onClick={() => this.changeContent(item.id)} className="border-bottom pb-2 pt-2 listElement d-none d-md-block">
                                 <b><a>{item.title}</a></b><br />
                                 <a className="small">{item.location}</a><br />
-                                <a className="small">{this.getFormattedDate(item.created_at)}</a>
+                                <a className="small">{new Intl.DateTimeFormat('en-US').format(new Date(item.created_at))}</a>
                             </div>
                             <div onClick={() => this.changeResponsiveContent()} className="border-bottom pb-2 pt-2 listElement d-md-none d-lg-none d-xl-none">
                                 <b><a>{item.title}</a></b><br />
                                 <a className="small">{item.location}</a><br />
-                                <a className="small">{this.getFormattedDate(item.created_at)}</a>
+                                <a className="small">{new Intl.DateTimeFormat('en-US').format(new Date(item.created_at))}</a>
                             </div>
                         </div>
                     )}
