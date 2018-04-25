@@ -24,12 +24,59 @@ class ProfilePage extends Component {
             console.log(authUser);
             db.getUser(authUser.uid).then(snapshot => {
                 this.setState(() => ( snapshot.val() ));
+                const lala =  Object.values(this.state.jobs);
+                this.setState({jobs:lala});
+                console.log( this.state.jobs);
+                for (var i = 0; i < Object.keys(this.state.jobs).length; i++) {
+                    console.log(this.state.jobs[i]);
+                    console.log(this.state.jobs[i].job.title);
+                    //indents.push(<span className='indent' key={i}></span>);
+                }
             });
         });
     }
 
+
+    all_saved_jobs(){
+        var all_saved_jobs=[];
+        /*for (var i = 0; i < Object.keys(this.state.jobs).length; i++) {
+            var current_job=Object.values(this.state.jobs[i][0]);
+
+            all_saved_jobs.push(<li class="list-group-item">{this.state.jobs[i].job.title}</li>);
+        }*/
+
+        var x=this.state.jobs;
+
+        Object.keys(x).forEach(function(key) {
+            console.log(x[key]);
+            //var current_job=x[key][0];
+            //current_job=Object.values(current_job);
+        });
+
+
+
+       /* Object.keys(x).forEach(function(key) {
+            console.log(x[key]);
+            Object.keys(x[key]).forEach(function (subkey) {
+
+                    console.log("->"+x[key][subkey]);
+
+                }
+
+            )
+        });*/
+
+        return all_saved_jobs;
+    }
+
     render() {
         const { email, lastname, name } = this.state;
+
+
+       var x=this.all_saved_jobs();
+
+
+
         return (
             <AuthUserContext.Consumer>
                 {authUser => (
@@ -41,9 +88,7 @@ class ProfilePage extends Component {
                                 <p class="card-text"><strong>Email: </strong>{this.state.email}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                <li class="list-group-item">Vestibulum at eros</li>
+                                {x}
                             </ul>
                         </div>
 
