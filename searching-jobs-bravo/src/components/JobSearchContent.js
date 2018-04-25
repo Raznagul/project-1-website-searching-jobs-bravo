@@ -25,7 +25,8 @@ class JobSearchContent extends Component {
                     id: this.props.jobContent.id,
                     title: this.props.jobContent.title,
                     postedAt: this.props.jobContent.created_at,
-                    company: this.props.jobContent.company
+                    company: this.props.jobContent.company,
+                    howToApply: this.props.jobContent.how_to_apply
                 })
                     .then(() => console.log('Saved!'))
                     .catch(() => console.log('ERROR!!!'));
