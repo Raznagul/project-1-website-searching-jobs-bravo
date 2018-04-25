@@ -21,8 +21,14 @@ class JobSearchContent extends Component {
             this.props.history.push(routes.signin);
           }
           else{
-            alert(this.props.jobContent.id);
-                db.updateSavedJobs(authUser.uid, this.props.jobContent.id);
+                db.updateSavedJobs(authUser.uid, {
+                    id:this.props.jobContent.id,
+                    title:this.props.jobContent.title,
+                    postedAt: this.props.jobContent.created_at,
+                    company: this.props.jobContent.company
+                })
+                .then(()=>console.log('Saved!'))
+                .catch(()=> console.log('ERROR!!!'));
             }
           });
     }
