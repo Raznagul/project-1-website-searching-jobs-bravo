@@ -95,7 +95,7 @@ class ProfilePage extends Component {
                                         <li class="list-group-item">
                                             <p><strong>Job title: </strong> {e.job.title}</p>
                                             <p><strong>Company: </strong> {e.job.company}</p>
-                                            <p><strong>Posted date: </strong> {e.job.postedAt}</p>
+                                            <p><strong>Posted date: </strong> {e.job.postedAt && new Intl.DateTimeFormat('en-US').format(new Date(e.job.postedAt))}</p>
                                         </li>) 
                                 : ""}
                             </ul>
