@@ -37,8 +37,7 @@ class ProfilePage extends Component {
           <div  class="card backColor card-profile" >
               <img class="card-img-top " src={require('./../images/user.png')} alt="Card image cap"/>
               <div class="card-body">
-                  <h5 class="card-title ">{name}</h5>
-                  <p class="card-text"><strong>Complete name: </strong> {name}{lastname}</p>
+                  <h5 class="card-title text-center">{name}{lastname}</h5>
                   <p class="card-text"><strong>Email: </strong>{email}</p>
               </div>
 

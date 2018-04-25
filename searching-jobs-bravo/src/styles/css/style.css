@@ -26,6 +26,16 @@ body {
   body .wrap {
     min-height: calc(100vh - 89px); }
   body .card-profile {
-    margin-top: 5%; }
+    padding-top: 5%; }
+    body .card-profile img {
+      width: 25em;
+      height: 20em; }
+
+@media (min-width: 600px) {
+  .card-profile {
+    padding-top: 5%; }
+    .card-profile img {
+      width: 10em;
+      height: 5em; } }
 
 /*# sourceMappingURL=style.css.map */
