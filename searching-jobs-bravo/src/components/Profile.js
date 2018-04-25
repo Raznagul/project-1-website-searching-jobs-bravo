@@ -91,7 +91,13 @@ class ProfilePage extends Component {
                             </div>
                             <ul class="list-group list-group-flush">
                                 {this.state.jobs  && this.state.jobs.length > 1 ? 
-                                    this.state.jobs.map(e => <div><p>job id: {e.job.id}</p><p>company: {e.job.company}</p></div>) : ""}
+                                    this.state.jobs.map(e => 
+                                        <li class="list-group-item">
+                                            <p>Job title: {e.job.title}</p>
+                                            <p>job id: {e.job.id}</p>
+                                            <p>company: {e.job.company}</p>
+                                            <p>Posted date: {e.job.postedAt}</p>
+                                        </li>) : ""}
                             </ul>
                         </div>
 
