@@ -84,7 +84,7 @@ class JobSearchPage extends Component {
     }
 
     componentDidMount() {
-        let searchURL = baseURL + this.props.search + (this.state.fullTime ? "&full_time=true" : "");
+        let searchURL = baseURL + this.props.match.params.search + (this.state.fullTime ? "&full_time=true" : "");
         console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
@@ -99,7 +99,7 @@ class JobSearchPage extends Component {
     }
 
     setFullTime = (state) => {
-        this.setState({ fullTime: state }, this.fireOnSelect );
+        this.setState({ fullTime: state }, this.fireOnSelect);
         //() => this.fireOnSelect() 
         //this.fireOnSelect
         this.componentDidMount();

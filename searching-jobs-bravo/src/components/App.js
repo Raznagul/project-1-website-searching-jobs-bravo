@@ -34,13 +34,12 @@ const App = () => (
         <Route exact path={routes.signup} component={() => <SignUpPage />} />
         <Route exact path={routes.forgottenpassword} component={() => <ForgottenPasswordPage />} />
         <Route exact path={routes.profile} component={() => <ProfilePage />} />
-        <Route exact path={routes.contactus} component={() => <ContactUsPage/>} />
-		    <Route exact path={routes.aboutus} component={() => <AboutUs />} />
+        <Route exact path={routes.contactus} component={() => <ContactUsPage />} />
+        <Route exact path={routes.aboutus} component={() => <AboutUs />} />
         <Route exact path={routes.termsofuse} component={() => <TermsOfUse />} />
-        <Route exact path={routes.jobsearch} component={() => <JobSearchPage/>} />
-
+        <Route path={routes.jobsearch + "/:search"} component={() => <JobSearchPage />} />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   </Router>
 );
