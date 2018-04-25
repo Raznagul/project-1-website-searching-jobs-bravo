@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import * as routes from "../constants/routes";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import './../styles/css/style.css';
+
 
 class ContentLandPage extends Component {
 
@@ -23,19 +24,21 @@ class ContentLandPage extends Component {
         //Reddirigir a componente de David (Core)
         console.log('---> ' + this.props.history);
 
-        if (this.state.lat && this.state.long & this.state.keyword) {
-
+        if (this.state.lat && this.state.long && this.state.keyword) {
+            this.props.history.push(routes.jobsearch + "/description=" + this.state.keyword + "&lat=" + this.state.lat + "&long=" + this.state.long);
         } else if (this.state.lat && this.state.long) {
-
+            this.props.history.push(routes.jobsearch + "/lat=" + this.state.lat + "&long=" + this.state.long);
         } else if (this.state.keyword) {
-
+            this.props.history.push(routes.jobsearch + "/description=" + this.state.keyword);
         } else {
+            this.props.history.push(routes.jobsearch);
 
         }
     }
 
     handleChange = (event) => {
         this.changeStateValue(event.target.name, event.target.value);
+        console.log('---> ' + this.state.keyword);
     }
 
     setLatLong = (lat, long) => {
@@ -59,7 +62,7 @@ class ContentLandPage extends Component {
                                 <h1 className="jumbotron-heading">Let experts do the searching</h1>
                             </div>
                         </div>
-                        <Search setLatLong={this.setLatLong} handleChange={this.handleChange} />
+                        <Search setLatLong={this.setLatLong} handleChange={this.handleChange} onSubmit={this.onSubmit} />
                         <div className="row">
                             <div className="col-12 text-center mt-2">
                                 <Link to={routes.jobsearch}>View all jobs >></Link>
@@ -72,4 +75,4 @@ class ContentLandPage extends Component {
     };
 }
 
-export default ContentLandPage;
+export default withRouter(ContentLandPage);

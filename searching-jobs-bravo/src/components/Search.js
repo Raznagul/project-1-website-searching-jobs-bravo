@@ -9,7 +9,7 @@ class Search extends Component {
 
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit} >
+            <form onSubmit={this.props.onSubmit} >
                 <div className="row">
                     <div className="col-sm-12 col-md-6 col-lg-6">
                         <div className="form-group">

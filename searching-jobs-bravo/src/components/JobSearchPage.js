@@ -99,14 +99,20 @@ class JobSearchPage extends Component {
         };
     }
 
+
     componentDidMount() {
-        let searchURL = baseURL + (typeof yourvar !== 'undefined' ? this.props.match.params.search : "") + (this.state.fullTime ? "&full_time=true" : "");
+        var params = (typeof this.props.match.params.search !== 'undefined' ? this.props.match.params.search : "") + (this.state.fullTime ? "&full_time=true" : "");
+        this.requestAPI(params);
+    }
+
+    requestAPI(params){
+        let searchURL = baseURL + params;
         console.log(searchURL);
         axios.get(searchURL)
             .then(result => {
                 this.setState({ items: result.data });
                 let firstId = this.state.items[Object.keys(this.state.items)[0]] && this.state.items[Object.keys(this.state.items)[0]].id;
-                this.setState({ currentJob: findJobContent(this.state.items, firstId) });
+                    this.setState({ currentJob: findJobContent(this.state.items, firstId) });
                 //this.state.items.map(e => console.log(e));
             })
             .catch(error => {
@@ -127,16 +133,16 @@ class JobSearchPage extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-
-        if (this.state.lat && this.state.long & this.state.keyword) {
-
+        var params = "";
+        if (this.state.lat && this.state.long && this.state.keyword) {
+            params = "/description=" + this.state.keyword + "&lat=" + this.state.lat + "&long=" + this.state.long;
         } else if (this.state.lat && this.state.long) {
-
+            params = "/lat=" + this.state.lat + "&long=" + this.state.long;
         } else if (this.state.keyword) {
-
-        } else {
-
+            params = "/description=" + this.state.keyword;
         }
+
+        this.requestAPI(params);
     }
 
     handleChange = (event) => {
@@ -159,7 +165,7 @@ class JobSearchPage extends Component {
         return (
             <div>
                 <div className="backColor pt-2 pl-3 pr-3 pb-1">
-                    <Search />
+                    <Search setLatLong={this.setLatLong} handleChange={this.handleChange} onSubmit={this.onSubmit}/>
                 </div>
 
                 <div className="container backColor mt-3 mb-3 pl-3 pr-3 pt-3 pb-3">
