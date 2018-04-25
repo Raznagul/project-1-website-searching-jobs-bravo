@@ -24,20 +24,21 @@ class ProfilePage extends Component {
             console.log(authUser);
             db.getUser(authUser.uid).then(snapshot => {
                 this.setState(() => ( snapshot.val() ));
-                const lala =  Object.values(this.state.jobs);
-                this.setState({jobs:lala});
+                const jobs =  Object.values(this.state.jobs);
+                this.setState({jobs:jobs});
                 console.log( this.state.jobs);
+                /*
                 for (var i = 0; i < Object.keys(this.state.jobs).length; i++) {
                     console.log(this.state.jobs[i]);
                     console.log(this.state.jobs[i].job.title);
                     //indents.push(<span className='indent' key={i}></span>);
-                }
+                }*/
             });
         });
     }
 
 
-    all_saved_jobs(){
+    all_saved_jobs= () => {
         var all_saved_jobs=[];
         /*for (var i = 0; i < Object.keys(this.state.jobs).length; i++) {
             var current_job=Object.values(this.state.jobs[i][0]);
@@ -47,7 +48,7 @@ class ProfilePage extends Component {
 
         var x=this.state.jobs;
 
-        Object.keys(x).forEach(function(key) {
+        Object.keys(this.state.jobs).forEach(function(key) {
             console.log(x[key]);
             //var current_job=x[key][0];
             //current_job=Object.values(current_job);
@@ -66,7 +67,7 @@ class ProfilePage extends Component {
             )
         });*/
 
-        return all_saved_jobs;
+        return this.state.jobs;
     }
 
     render() {
@@ -74,6 +75,7 @@ class ProfilePage extends Component {
 
 
        var x=this.all_saved_jobs();
+        console.log({render:'render method', jobs:this.state.jobs});
 
 
 
@@ -88,7 +90,8 @@ class ProfilePage extends Component {
                                 <p class="card-text"><strong>Email: </strong>{this.state.email}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                {x}
+                                {this.state.jobs  && this.state.jobs.length > 1 ? 
+                                    this.state.jobs.map(e => <div><p>job id: {e.job.id}</p><p>company: {e.job.company}</p></div>) : ""}
                             </ul>
                         </div>
 
