@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
+import * as routes from "../constants/routes";
+import { Link } from "react-router-dom";
 import './../styles/css/style.css';
 
 class ContentLandPage extends Component {
@@ -58,6 +60,11 @@ class ContentLandPage extends Component {
                             </div>
                         </div>
                         <Search setLatLong={this.setLatLong} handleChange={this.handleChange} />
+                        <div className="row">
+                            <div className="col-12 text-center mt-2">
+                                <Link to={routes.jobsearch}>View all jobs >></Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
