@@ -43,14 +43,14 @@ class JobSearchFilter extends Component {
 
         return (
             <div className="row pb-3">
-                <div className="col-sm-1 col-md-2 col-lg-2 pl-5 pt-1 pb-1">
+                <div className="col-sm-12 col-md-3 col-lg-2 pl-5 pt-1 pb-1">
                     <input className="form-check-input" defaultChecked={false} onChange={this.changeFullTime} type="checkbox" name="full_time" id="full_time" />
                     <label className="form-check-label" for="full_time">Only Fulltime</label>
                 </div>
-                <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
+                <div className="col-sm-12 col-md-3 col-lg-3 pb-1">
                     <input name="date" type="date" className="form-control" onChange={this.changeDate} />
                 </div>
-                <div className="col-sm-2 col-md-3 col-lg-3 pb-1">
+                <div className="col-sm-12 col-md-3 col-lg-3 pb-1">
                     <select className="form-control" name="Company" onChange={this.changeCompany}>
                         <option disabled selected value>-- Company --</option>
                         {this.props.company.map(company =>
@@ -58,7 +58,7 @@ class JobSearchFilter extends Component {
                         }
                     </select>
                 </div>
-                <div className="col-sm-2 col-md-4 col-lg-4 pt-2 pb-1">
+                <div className="col-sm-12 col-md-3 col-lg-4 pt-2 pb-1">
                     <input type="image" className="float-right" alt="Alert" src={require('./../images/alert24.png')} />
                 </div>
             </div>

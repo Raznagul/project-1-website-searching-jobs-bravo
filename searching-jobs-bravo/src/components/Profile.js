@@ -82,12 +82,31 @@ class ProfilePage extends Component {
         return (
             <AuthUserContext.Consumer>
                 {authUser => (
-                    <div class="row d-flex justify-content-center ">
-                        <div  class="card backColor card-profile" >
-                            <img class="card-img-top " src={require('./../images/user.png')} alt="Card image cap"/>
-                            <div class="card-body">
-                                <h5 class="card-title text-center">{this.state.name}{this.state.lastname}</h5>
-                                <p class="card-text"><strong>Email: </strong>{this.state.email}</p>
+                    <div class="container card-profile">
+                        <div class="row d-flex justify-content-center ">
+                            <div  class="card backColor " >
+                                
+                                
+                                <div class="row">
+                                <div class="col-sm">
+                                <img class="card-img-top " src={require('./../images/user.png')} alt="Card image cap"/>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{this.state.name}{this.state.lastname}</h5>
+                                    <p class="card-text"><strong>Email: </strong>{this.state.email}</p>
+                                </div>
+                                </div>
+                                <div class="col-sm ">
+                                <ul class="list-group list-group-flush backColor">
+                                    {this.state.jobs  && this.state.jobs.length > 1 ? 
+                                        this.state.jobs.map(e => 
+                                            <li class="list-group-item backColor">
+                                                <p><strong>Job title: </strong> {e.job.title}</p>
+                                                <p><strong>Company: </strong> {e.job.company}</p>
+                                                <p><strong>Posted date: </strong> {e.job.postedAt}</p>
+                                            </li>) 
+                                    : ""}
+                                </ul>
+                                </div>
                             </div>
                             <ul class="list-group list-group-flush">
                                 {this.state.jobs  && this.state.jobs.length > 1 ? 
@@ -101,7 +120,10 @@ class ProfilePage extends Component {
                             </ul>
                         </div>
 
+                        </div>
+                    
                     </div>
+                    
 
                 )}
             </AuthUserContext.Consumer>
