@@ -26,7 +26,7 @@ body {
   body .wrap {
     min-height: calc(100vh - 89px); }
   body .card-profile {
-    padding-top: 5%; }
+    padding-top: 0%; }
     body .card-profile img {
       width: 25em;
       height: 20em; }
@@ -34,8 +34,8 @@ body {
     body .card-profile {
       padding-top: 5%; }
       body .card-profile img {
-        width: 10em;
-        height: 5em; } }
+        width: 25em;
+        height: 20em; } }
   body .listElement {
     cursor: pointer; }
   body .listElement:hover {
