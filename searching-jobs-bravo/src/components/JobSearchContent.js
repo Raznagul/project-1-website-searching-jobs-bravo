@@ -25,7 +25,8 @@ class JobSearchContent extends Component {
                     id: this.props.jobContent.id,
                     title: this.props.jobContent.title,
                     postedAt: this.props.jobContent.created_at,
-                    company: this.props.jobContent.company
+                    company: this.props.jobContent.company,
+                    howToApply: this.props.jobContent.how_to_apply
                 })
                     .then(() => console.log('Saved!'))
                     .catch(() => console.log('ERROR!!!'));
@@ -34,7 +35,7 @@ class JobSearchContent extends Component {
     }
 
     render() {
-        if (this.props.jobContent) {
+        if (Object.keys(this.props.jobContent) && Object.keys(this.props.jobContent).length > 0) {
             return (
                 <div>
                     <div>
@@ -67,7 +68,7 @@ class JobSearchContent extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <p><b>Date posted:</b> {this.props.jobContent && this.props.jobContent.created_at} </p>
+                            <p><b>Date posted:</b> {this.props.jobContent && new Intl.DateTimeFormat('en-US').format(new Date(this.props.jobContent.created_at))} </p>
                         </div>
                     </div>
                     <hr />
