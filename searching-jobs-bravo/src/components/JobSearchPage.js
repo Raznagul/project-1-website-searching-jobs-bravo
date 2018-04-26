@@ -30,8 +30,13 @@ class JobSearchFilter extends Component {
     }
 
     changeDate = (event) => {
-        let dateDarts = event.target.value.split('-');
-        this.props.handleDateState(new Date(dateDarts[0], dateDarts[1] - 1, dateDarts[2]));
+        if (event.target.value === "") {
+            this.props.handleDateState(event.target.value);
+        } else {
+            let dateDarts = event.target.value.split('-');
+            this.props.handleDateState(new Date(dateDarts[0], dateDarts[1] - 1, dateDarts[2]));
+        }
+
     }
 
     changeCompany = (event) => {
